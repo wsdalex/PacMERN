@@ -15,4 +15,3 @@ As a user I want to be able to play a game and receive a score
 As a user I want to be able to chat to other users
 As a user I want to choose from multiple games to play 
 
-`
