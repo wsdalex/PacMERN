@@ -10,6 +10,11 @@ app.use(bodyParser.json());
 //ROUTES TO GO HERE
 app.use("/users", usersRouter);
 
+// Simulate an error route for testing error handling
+app.get("/error", () => {
+  throw new Error("Test error");
+});
+
 //404 handling
 app.use((_req, res) => {
   res.status(404).json({ err: "Error 404: Not Found" });
