@@ -1,8 +1,7 @@
 const User = require("../models/user");
 
 const create = (req, res) => {
-
-  const name = req.body.name
+  const name = req.body.name;
   const email = req.body.email;
   const password = req.body.password;
   const profileImage = req.body.profileImage;
@@ -16,17 +15,17 @@ const create = (req, res) => {
     })
     .catch((err) => {
       console.error(err);
-      if (err.message === "Email address is already taken") { // added if else statement for checking unique email
+      if (err.message === "Email address is already taken") {
+        // added if else statement for checking unique email
         res.status(400).json({ message: "Email address is already taken" });
-    } else {
+      } else {
         res.status(400).json({ message: "Something went wrong" });
-    }
+      }
     });
-
 };
 
 const UsersController = {
-    create: create,
+  create: create,
 };
 
 module.exports = UsersController;
