@@ -1,13 +1,15 @@
 import { createBrowserRouter, RouterProvider, Navigate, Outlet } from "react-router-dom";
 import './App.css';
-import { HomePage } from "../pages/HomePage/HomePage";
-import { Error404Page } from "../pages/ErrorPage/Error404Page";
-import { LoginPage } from "../pages/Login/LoginPage";
-import { SignupPage } from "../pages/Signup/SignupPage";
-import { ProfilePage } from "../pages/Profile/ProfilePage";
+import { HomePage } from "../src/pages/HomePage/HomePage";
+import { Error404Page } from "../src/pages/ErrorPage/Error404Page";
+import { LoginPage } from "../src/pages/Login/LoginPage";
+import { SignupPage } from "../src/pages/Signup/SignupPage";
+import { ProfilePage } from "../src/pages/Profile/ProfilePage";
 
 const isAuthenticated = () => {
-  return localStorage.getItem("token") !== null;
+  const token = localStorage.getItem("token");
+  console.log("Current token:", token);
+  return token !== null;
 };
 
 export const ProtectedRoute = () => {
