@@ -50,14 +50,16 @@ describe("Login Page", () => {
     });
 
     test("allows a user to login", async () => {
+        login.mockResolvedValue({
+            token: "testtoken",
+            user: { id: 1, name: "Test User" }
+        });
         render(<LoginPage />);
-
         await completeLoginForm();
-
         expect(login).toHaveBeenCalledWith("test@email.com", "1234");
     });
 
-    test("navigates to /posts on successful login", async () => {
+    test("navigates to /profile on successful login", async () => {
         login.mockResolvedValue({
             token: "secrettoken123",
             user: { id: 1, name: "Test User" },
@@ -68,7 +70,7 @@ describe("Login Page", () => {
         await completeLoginForm();
 
         await waitFor(() => {
-            expect(mockNavigate).toHaveBeenCalledWith("/posts");
+            expect(mockNavigate).toHaveBeenCalledWith("/profile");
             expect(localStorage.getItem("token")).toBe("secrettoken123");
             expect(localStorage.getItem("user")).toBe(
                 JSON.stringify({ id: 1, name: "Test User" })
@@ -86,5 +88,31 @@ describe("Login Page", () => {
         await waitFor(() => {
             expect(screen.getByText("Error logging in")).toBeInTheDocument();
         });
+    });
+
+    test("renders login form with empty fields initially", () => {
+        render(<LoginPage />);
+        expect(screen.getByLabelText(/email address/i)).toHaveValue("");
+        expect(screen.getByLabelText(/password/i)).toHaveValue("");
+        expect(screen.queryByText(/error/i)).not.toBeInTheDocument();
+    });
+
+    test("updates email state when email input changes", async () => {
+        render(<LoginPage />);
+        const emailInput = screen.getByLabelText(/email address/i);
+        await userEvent.type(emailInput, "test@email.com");
+        expect(emailInput).toHaveValue("test@email.com");
+    });
+    
+    test("updates password state when password input changes", async () => {
+        render(<LoginPage />);
+        const passwordInput = screen.getByLabelText(/password/i);
+        await userEvent.type(passwordInput, "password123");
+        expect(passwordInput).toHaveValue("password123");
+    });
+
+    test("renders 'Don't have an account? Sign Up' link", () => {
+        render(<LoginPage />);
+        expect(screen.getByText("Don't have an account? Sign Up")).toBeInTheDocument();
     });
 });
