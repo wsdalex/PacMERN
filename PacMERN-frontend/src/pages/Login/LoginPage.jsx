@@ -53,6 +53,7 @@ export const LoginPage = () => {
                     autoFocus
                     onChange={handleEmailChange}
                 />
+                {errors && <p className='error-message'>{errors.email}</p>}
                 <TextField
                     margin='normal'
                     required
@@ -64,7 +65,7 @@ export const LoginPage = () => {
                     autoComplete='current-password'
                     onChange={handlePasswordChange}
                 />
-                {errors && <p className='error-message'>{errors}</p>}
+                {errors && <p className='error-message'>{errors.password}</p>}
                 <Button
                     type='submit'
                     fullWidth
@@ -75,12 +76,13 @@ export const LoginPage = () => {
                 </Button>
                 <Grid container>
                     <Grid item>
-                        <Link href='#' variant='body2'>
+                        <Link to='/signup' variant='body2'>
                             {"Don't have an account? Sign Up"}
                         </Link>
                     </Grid>
                 </Grid>
             </Box>
+            {errors && <p className='error-message'>{errors}</p>}
         </Container>
     );
 };
