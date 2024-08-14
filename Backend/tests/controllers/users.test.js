@@ -101,4 +101,42 @@ describe("/users", () => {
         });
     });
 
+    // Test the getProfile controller
+    describe("GET /users/:id (getProfile)", () => {
+        test("should return the user profile when a valid ID is provided", async () => {
+            const user = new User({ email: "profiletest@email.com", password: "1234", name: "Test User" });
+            await user.save();
+
+            const response = await request(app)
+                .get(`/users/${user._id}`)
+                .send();
+
+            expect(response.statusCode).toBe(200);
+            expect(response.body.email).toEqual("profiletest@email.com");
+            expect(response.body.name).toEqual("Test User");
+        });
+
+        test("should return 401 if the user ID does not exist", async () => {
+            const fakeUserId = "dbksjdbkdjf5456";
+
+            const response = await request(app)
+                .get(`/users/${fakeUserId}`)
+                .send();
+
+            expect(response.statusCode).toBe(401);
+            expect(response.body.message).toEqual("Unauthorised");
+        });
+
+        test("should return 401 if an invalid ID format is provided", async () => {
+            const invalidUserId = "12345";
+
+            const response = await request(app)
+                .get(`/users/${invalidUserId}`)
+                .send();
+
+            expect(response.statusCode).toBe(401);
+            expect(response.body.message).toEqual("Unauthorised");
+        });
+    });
+
 });
