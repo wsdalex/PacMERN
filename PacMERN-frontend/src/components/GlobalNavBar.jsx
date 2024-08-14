@@ -21,6 +21,7 @@ const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
   border: '3px solid #000099',
+
   '&:hover': {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
@@ -29,7 +30,7 @@ const Search = styled('div')(({ theme }) => ({
   width: '100%',
   [theme.breakpoints.up('sm')]: {
     marginLeft: theme.spacing(3),
-    width: 'auto',
+    width: '30ch',
   },
 }));
 
@@ -54,7 +55,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     width: '100%',
     color: "#000099",
     [theme.breakpoints.up('md')]: {
-      width: '20ch',
+      width: '50ch',
     },
   },
 }));
@@ -175,20 +176,23 @@ export default function GlobalNavBar() {
             aria-label="open drawer"
             sx={{ mr: 2 , color: "#000099"}}
           >
-            <MenuIcon />
+            <MenuIcon sx={{ fontSize: 50}}/>
           </IconButton>
           <Typography
             variant="h6"
             noWrap
             component="div"
             color="#000099"
-            sx={{ display: { xs: 'none', sm: 'block' } }}
+            fontSize="40px"
+        
+            sx={{ display: { xs: 'none', sm: "block" } }}
           >
-            MAKERS 64
+            MAKERS <span style={{ fontSize: 20, color: 'red', verticalAlign: 'super'}}>64</span>
           </Typography>
           <Search>
             <SearchIconWrapper
-            backgroundColor="#000099">
+            backgroundColor="#000099"
+            >
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
@@ -196,6 +200,8 @@ export default function GlobalNavBar() {
               inputProps={{ 'aria-label': 'search' }}
               color="#000099"
               backgroundColor="#000099"
+              width=""
+            
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />
