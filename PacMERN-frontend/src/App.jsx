@@ -5,6 +5,10 @@ import { Error404Page } from "../src/pages/ErrorPage/Error404Page";
 import { LoginPage } from "../src/pages/Login/LoginPage";
 import { SignupPage } from "../src/pages/Signup/SignupPage";
 import { ProfilePage } from "../src/pages/Profile/ProfilePage";
+import theme from "./assets/theme";
+import { CssBaseline } from "@mui/material";
+import { ThemeProvider } from "@mui/material";
+import "./assets/fonts/fonts.css"
 
 const isAuthenticated = () => {
   const token = localStorage.getItem("token");
@@ -51,7 +55,10 @@ const router = createBrowserRouter([
 const App = () => {
   return (
     <>
+      <ThemeProvider theme={theme}>
+      <CssBaseline/>
       <RouterProvider router={router} />
+      </ThemeProvider>
     </>
   );
 };
