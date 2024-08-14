@@ -1,68 +1,45 @@
-// docs: https://vitejs.dev/guide/env-and-mode.html
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+const User = require("../models/user");
+const { generateToken } = require("../lib/token");
 
-export const getToken = () => {
-  return window.localStorage.getItem("token")
-}
+const createToken = async (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
 
-export const login = async (email, password) => {
-  const payload = {
-    email: email,
-    password: password,
-  };
+    try {
+        const user = await User.findOne({ email: email });
+        if (!user) {
+            console.log("Auth Error: User not found");
+            return res.status(401).json({ message: "User not found" });
+        }
 
-  const requestOptions = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(payload),
-  };
+        // comparePassword method from user model
+        const isMatch = await user.comparePassword(password);
+        if (!isMatch) {
+            console.log("Auth Error: Passwords do not match");
+            return res.status(401).json({ message: "Password incorrect" });
+        }
 
-  const response = await fetch(`${BACKEND_URL}/tokens`, requestOptions);
-
-  // docs: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
-  if (response.status === 201) {
-    let data = await response.json();
-    const session = {
-      token: data.token,
-      user: data.user,
-    };
-    return session;
-  } else {
-    const errorData = await response.json();
-    throw new Error(
-      errorData.message ||
-        `Received status ${response.status} when logging in. Expected 201`
-    );
-  }
+        const token = generateToken(user.id);
+        
+        res.status(201).json({
+            token: token,
+            message: "OK",
+            user: {
+                id: user._id,
+                email: user.email,
+                name: user.name,
+                profileImage: user.profileImage,
+            },
+        });
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Server error" });
+    }
 };
 
-export const signup = async (name, email, password, profileImage) => {
-  const payload = {
-    name: name,
-    email: email,
-    password: password,
-    profileImage: profileImage,
-  };
-
-  const requestOptions = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(payload),
-  };
-
-  let response = await fetch(`${BACKEND_URL}/users`, requestOptions);
-
-  // docs: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
-  if (response.status === 201) {
-    return;
-  } else {
-    const errorData = await response.json(); // added to add custom error message from back-end, for exp the unique user error message
-    throw new Error(
-      errorData.message || `Received status ${response.status} when signing up. Expected 201` // if custom error message exists then that gets used
-    );
-  }
+const AuthenticationController = {
+    createToken: createToken,
 };
+
+module.exports = AuthenticationController;

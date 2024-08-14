@@ -19,7 +19,7 @@ export const LoginPage = () => {
             localStorage.setItem("user", JSON.stringify(user));
             localStorage.setItem("token", token);
             console.log("logged in user's token -> " + token);
-            navigate("/posts");
+            navigate("/profile");
         } catch (err) {
             console.error(err);
             setErrors(err.message);
@@ -53,7 +53,6 @@ export const LoginPage = () => {
                     autoFocus
                     onChange={handleEmailChange}
                 />
-                {errors && <p className='error-message'>{errors.email}</p>}
                 <TextField
                     margin='normal'
                     required
@@ -65,7 +64,7 @@ export const LoginPage = () => {
                     autoComplete='current-password'
                     onChange={handlePasswordChange}
                 />
-                {errors && <p className='error-message'>{errors.email}</p>}
+                {errors && <p className='error-message'>{errors}</p>}
                 <Button
                     type='submit'
                     fullWidth
@@ -82,7 +81,6 @@ export const LoginPage = () => {
                     </Grid>
                 </Grid>
             </Box>
-            {errors && <p className='error-message'>{errors}</p>}
         </Container>
     );
 };
