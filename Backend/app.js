@@ -4,6 +4,7 @@ const cors = require("cors");
 const usersRouter = require("./routes/users.js");
 const authenticationRouter = require("./routes/authentication");
 const tokenChecker = require("./middleware/tokenChecker");
+const friendsRouter = require("./routes/friends.js");
 //Create express app, enable cors and ability to read json
 const app = express();
 app.use(cors());
@@ -12,6 +13,7 @@ app.use(bodyParser.json());
 //ROUTES TO GO HERE
 app.use("/users", usersRouter);
 app.use("/tokens", authenticationRouter);
+app.use("/friends", friendsRouter);
 
 // Simulate an error route for testing error handling
 app.get("/error", () => {
