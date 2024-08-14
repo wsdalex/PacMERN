@@ -15,11 +15,12 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import PeopleIcon from '@mui/icons-material/People';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  border: '3px solid #000099',
   '&:hover': {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
@@ -40,6 +41,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  color: "#000099"
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
@@ -50,6 +52,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
     width: '100%',
+    color: "#000099",
     [theme.breakpoints.up('md')]: {
       width: '20ch',
     },
@@ -120,7 +123,7 @@ export default function GlobalNavBar() {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+        <IconButton size="large" aria-label="show 4 new mails" color="#000099">
           <Badge badgeContent={4} color="error">
             <MailIcon />
           </Badge>
@@ -168,9 +171,9 @@ export default function GlobalNavBar() {
           <IconButton
             size="large"
             edge="start"
-            color="#000099"
+            color="inherit"
             aria-label="open drawer"
-            sx={{ mr: 2 }}
+            sx={{ mr: 2 , color: "#000099"}}
           >
             <MenuIcon />
           </IconButton>
@@ -197,20 +200,22 @@ export default function GlobalNavBar() {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' , color:"#000099"} }}>
-            <IconButton size="large" aria-label="show 4 new mails" color="#000099">
+            <IconButton size="large" aria-label="show 4 new mails" sx={{ color: '#000099'}}>
               <Badge badgeContent={4} color="error">
                 <MailIcon />
               </Badge>
             </IconButton>
-            <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="#000099"
-            >
-              <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
+            
+            
+        <IconButton
+            size="large"
+             aria-label="friends"
+            sx={{ color: '#000099' }}
+        >
+        <PeopleIcon />
+        </IconButton>
+ 
+            
             <IconButton
               size="large"
               edge="end"
@@ -218,7 +223,7 @@ export default function GlobalNavBar() {
               aria-controls={menuId}
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
-              color="inherit"
+              sx={{ color: '#000099' }}
             >
               <AccountCircle />
             </IconButton>
