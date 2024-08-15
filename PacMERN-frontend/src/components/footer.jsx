@@ -1,7 +1,7 @@
 // src/components/Footer.js
 
 import { Box, Typography } from '@mui/material';
-
+import Pacman from '../assets/images/pacman.png';
 
 import theme from '../assets/theme';
 
