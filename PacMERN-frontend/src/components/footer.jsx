@@ -1,7 +1,7 @@
 // src/components/Footer.js
 
 import { Box, Typography } from '@mui/material';
-import PacmanRow from './Pacman'; // Ensure this is the correct import
+
 
 const Footer = () => {
   return (

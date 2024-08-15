@@ -1,6 +1,5 @@
 import { createTheme } from '@mui/material/styles';
 
-
 const theme = createTheme({
   palette: {
     primary: {
@@ -17,18 +16,27 @@ const theme = createTheme({
     },
     background: {
       default: '#F5F5F5', // Gray
-      paper: "'#FFFFFF'",  // White
+      paper: '#FFFFFF',  // White (corrected typo)
     },
     text: {
       primary: "#000099", // Blue
       secondary: '#FFFFFF', // White
-      
     },
   },
 
   typography: {
-    fontFamily: "NintendoFont"
-  }
+    fontFamily: "NintendoFont",
+  },
+
+  components: {
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          color: "#000099", // Set the label color to blue
+        },
+      },
+    },
+  },
 });
 
 export default theme;
