@@ -1,7 +1,5 @@
 
-import { createTheme } from '@mui/material/styles';
-
-
+import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   palette: {
@@ -19,14 +17,6 @@ const theme = createTheme({
     },
     background: {
 
-      default: '#F5F5F5', // Gray
-      paper: '#FFFFFF',  // White (corrected typo)
-    },
-    text: {
-      primary: "#000099", // Blue
-      secondary: '#FFFFFF', // White
-
-
       default: '#FFFFFF', // WHITE
       paper: "'#FFFFFF'",  // White
 
@@ -34,15 +24,15 @@ const theme = createTheme({
     text: {
       primary: "#000099", // Blue
       secondary: "#FFFFFF", // White
-
     },
-
+  },
 
   typography: {
     fontFamily: "NintendoFont",
     retro: "RetroFont",
   },
-  }
 });
 
 export default theme;
+
+

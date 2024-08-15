@@ -27,7 +27,7 @@ const Footer = () => {
         justifyContent: 'center',
       }}
     >
-       <Typography 
+      <Typography 
         variant="body2" 
         sx={{ 
           mt: 1, 
