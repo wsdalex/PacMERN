@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import GlobalNavBar from "../../components/GlobalNavBar";
-
+import Footer from "../../components/footer";
 
 export const HomePage = () => {
     return (
+        <>
         <div className='home'>
             <GlobalNavBar></GlobalNavBar>
             <h1>WELCOME!</h1>
@@ -16,5 +17,7 @@ export const HomePage = () => {
                 LOG IN
             </Link>
         </div>
+       <Footer/>
+       </>
     );
 };
