@@ -42,7 +42,7 @@ const theme = createTheme({
     fontFamily: "NintendoFont",
     retro: "RetroFont",
   },
-
+  }
 });
 
 export default theme;
