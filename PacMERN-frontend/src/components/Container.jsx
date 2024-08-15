@@ -11,7 +11,7 @@ export default function FixedContainer({ children }) {
         <Box 
        sx={{ 
         width: '100vw', 
-        height: "30vw",
+        height: "25vw",
         bgcolor: theme.palette.primary.main, 
         color: '#fff', 
         marginX: 'calc(50% - 50vw)', 
