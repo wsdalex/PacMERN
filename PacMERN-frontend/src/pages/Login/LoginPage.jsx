@@ -112,8 +112,11 @@ export const LoginPage = () => {
     <Button
       type='submit'
       fullWidth
-      variant='contained'
-      sx={{ mt: 3, mb: 2 }}
+      variant='outlined'
+      sx={{ mt: 3, 
+        mb: 2,
+        border: '3px solid black',
+        boxShadow: 3, }}
     >
       Sign In
     </Button>
