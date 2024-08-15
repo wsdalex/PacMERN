@@ -13,10 +13,10 @@ const theme = createTheme({
       main: "#069330", // Green
     },
     red: {
-      main: "#FF3000", // Red
+      main: "#ff2d1e", // Red
     },
     background: {
-      default: '#F5F5F5', // Gray
+      default: '#FFFFFF', // WHITE
       paper: "'#FFFFFF'",  // White
     },
     text: {
