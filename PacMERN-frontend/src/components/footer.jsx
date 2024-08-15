@@ -1,8 +1,10 @@
 // src/components/Footer.js
 
 import { Box, Typography } from '@mui/material';
+
+
 import theme from '../assets/theme';
-import Pacman from '../assets/images/pacman.png'
+
 
 
 const Footer = () => {
