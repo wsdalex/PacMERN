@@ -23,7 +23,6 @@ const Footer = () => {
         justifyContent: 'center',
       }}
     >
-      <PacmanRow />
       <Typography variant="body2" sx={{ mt: 1 }}>
         PACMERN PRODUCTIONS
       </Typography>
