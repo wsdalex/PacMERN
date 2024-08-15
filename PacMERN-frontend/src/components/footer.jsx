@@ -27,14 +27,37 @@ const Footer = () => {
         justifyContent: 'center',
       }}
     >
-      <Typography variant="body2" sx={{ mt: 1, color: theme.palette.red.main, marginBottom: "0px"}}>
-      <img src={Pacman} alt="pacman icon"  style={{ marginBottom: "0px", width: '15px', height: '15px', marginLeft: '8px' }}/>
-      <img src={Pacman} alt="pacman icon"  style={{ marginBottom: "0px", width: '15px', height: '15px', marginLeft: '30px' }}/>
-      <img src={Pacman} alt="pacman icon"  style={{ marginBottom: "0px", width: '15px', height: '15px', marginLeft: '30px', marginRight: "40px" }}/>
-        PACMERN PRODUCTIONS
-        <img src={Pacman} alt="pacman icon"  style={{ marginBottom: "0px", width: '15px', height: '15px', marginLeft: '40px' }}/>
-        <img src={Pacman} alt="pacman icon"  style={{ marginBottom: "0px", width: '15px', height: '15px', marginLeft: '30px' }}/>
-        <img src={Pacman} alt="pacman icon"  style={{ marginBottom: "0px", width: '15px', height: '15px', marginLeft: '30px' }}/>
+       <Typography 
+        variant="body2" 
+        sx={{ 
+          mt: 1, 
+          color: theme.palette.red.main, 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'center',
+          fontSize: '1rem'
+        }}
+      >
+        PACMERN PRODUCTIONS 
+      </Typography>
+      <Typography 
+        variant="body2" 
+        sx={{ 
+          mt: 1, 
+          color: theme.palette.red.main, 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'center',
+          fontSize: '10px'
+        }}
+      >
+        <img src={Pacman} alt="pacman icon" style={{ width: '15px', height: '15px', marginRight: '5px' }}/>
+        <span style={{ color: 'black' }}>POLLY</span><img src={Pacman} alt="pacman icon" style={{ width: '15px', height: '15px', marginRight: '5px', marginLeft: '50px' }}/>
+        <span style={{ color: 'black' }}>ABDALLAH</span><img src={Pacman} alt="pacman icon" style={{ width: '15px', height: '15px', marginRight: '5px', marginLeft: '50px' }}/>
+        <span style={{ color: 'black' }}>KARINA</span><img src={Pacman} alt="pacman icon" style={{ width: '15px', height: '15px', marginRight: '5px', marginLeft: '50px' }}/>
+        <span style={{ color: 'black' }}>WILL</span><img src={Pacman} alt="pacman icon" style={{ width: '15px', height: '15px', marginRight: '5px', marginLeft: '50px' }}/>
+        <span style={{ color: 'black' }}>ROBERT</span><img src={Pacman} alt="pacman icon" style={{ width: '15px', height: '15px', marginRight: '5px', marginLeft: '50px' }}/>
+        <span style={{ color: 'black' }}>JOSH</span>
       </Typography>
     </Box>
   );
