@@ -40,79 +40,94 @@ export const LoginPage = () => {
 
     return (
         <Container className='login-container'>
-            <GlobalNavBar/>
-            <Box
-                component='form'
-                onSubmit={handleSubmit}
-                noValidate
-                sx={{ bgcolor: theme.palette.yellow.main, 
-                    height: '60vh',
-                    mt: 1,
-                    p: 3,
-                    borderRadius: 2 }}
-            >
-                <TextField
-                    variant="outlined" // This ensures the field has an outline
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="email"
-                    label="Email Address"
-                    name="email"
-                    autoComplete="email"
-                    autoFocus
-                    onChange={handleEmailChange}
-                    InputLabelProps={{
-                    sx: {
-                        position: 'relative', // Position the label relative to its normal flow
-                        top: '8px', // Adjust the label's position to sit above the input box
-                        fontSize: '2rem', // Increase font size if needed for visibility
-                        paddingBottom: '-3px', // Optional: Add padding to space it from the input box
-                    },
-                    shrink: true, // Keep this to ensure the label doesn't move when there's content in the input
-                    }}
-                />
-                {errors && <p className='error-message'>{errors.email}</p>}
-                <TextField
-                    variant="outlined"
-                    margin='normal'
-                    required
-                    fullWidth
-                    name='password'
-                    label='Password'
-                    type='password'
-                    id='password'
-                    autoComplete='current-password'
-                    onChange={handlePasswordChange}
-                    InputLabelProps={{
-                        sx: {
-                            position: 'relative', // Position the label relative to its normal flow
-                            top: '8px', // Adjust the label's position to sit above the input box
-                            fontSize: '2rem', // Increase font size if needed for visibility
-                            paddingBottom: '-3px', // Optional: Add padding to space it from the input box
-                        },
-                        shrink: true, // Keep this to ensure the label doesn't move when there's content in the input
-                        }}
-                />
-                {errors && <p className='error-message'>{errors.password}</p>}
-                <Button
-                    type='submit'
-                    fullWidth
-                    variant='contained'
-                    sx={{ mt: 3, mb: 2 }}
-                >
-                    Sign In
-                </Button>
-                <Grid container>
-                    <Grid item>
-                        <Link to='/signup' variant='body2'>
-                            {"Don't have an account? Sign Up"}
-                        </Link>
-                    </Grid>
-                </Grid>
-            </Box>
-            {errors && <p className='error-message'>{errors}</p>}
-            <Footer/>
-        </Container>
+  <GlobalNavBar/>
+  <Box
+    component='form'
+    onSubmit={handleSubmit}
+    noValidate
+    sx={{ 
+      bgcolor: theme.palette.yellow.main, 
+      border: '3px solid black',
+      boxShadow: 3,
+      height: 'auto',
+      mt: 3,
+      p: 8,
+      borderRadius: 2,
+      display: 'flex',
+      flexDirection: 'column', // Arrange items in a column
+      alignItems: 'center', // Center items horizontally
+      gap: 2, // Add gap between items
+    }}
+  >
+    <TextField
+      variant="outlined"
+      margin="normal"
+      required
+      fullWidth
+      id="email"
+      label="Email Address"
+      name="email"
+      autoComplete="email"
+      autoFocus
+      onChange={handleEmailChange}
+      InputLabelProps={{
+        sx: {
+          color: theme.palette.text.primary, // Apply color to the label
+          '&.Mui-focused': {
+            color: theme.palette.text.primary, // Ensure color remains blue when focused
+          },
+          '&.MuiFormLabel-root': {
+            color: theme.palette.text.primary, // Ensure color is blue in normal state
+          }
+        },
+        shrink: true,
+      }}
+    />
+    {errors && <p className='error-message'>{errors.email}</p>}
+    <TextField
+      variant="outlined"
+      margin='normal'
+      required
+      fullWidth
+      name='password'
+      label='Password'
+      type='password'
+      id='password'
+      autoComplete='current-password'
+      onChange={handlePasswordChange}
+      InputLabelProps={{
+        sx: {
+          color: theme.palette.text.primary, // Apply color to the label
+          '&.Mui-focused': {
+            color: theme.palette.text.primary, // Ensure color remains blue when focused
+          },
+          '&.MuiFormLabel-root': {
+            color: theme.palette.text.primary, // Ensure color is blue in normal state
+          }
+        },
+        shrink: true,
+      }}
+    />
+    {errors && <p className='error-message'>{errors.password}</p>}
+    <Button
+      type='submit'
+      fullWidth
+      variant='contained'
+      sx={{ mt: 3, mb: 2 }}
+    >
+      Sign In
+    </Button>
+    <Grid container justifyContent="flex-end">
+      <Grid item>
+        <Link to='/signup' variant='body2'>
+          {"Don't have an account? Sign Up"}
+        </Link>
+      </Grid>
+    </Grid>
+  </Box>
+  {errors && <p className='error-message'>{errors}</p>}
+  <Footer/>
+</Container>
+
     );
 };

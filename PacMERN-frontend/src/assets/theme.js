@@ -28,15 +28,6 @@ const theme = createTheme({
     fontFamily: "NintendoFont",
   },
 
-  components: {
-    MuiInputLabel: {
-      styleOverrides: {
-        root: {
-          color: "#000099", // Set the label color to blue
-        },
-      },
-    },
-  },
 });
 
 export default theme;
