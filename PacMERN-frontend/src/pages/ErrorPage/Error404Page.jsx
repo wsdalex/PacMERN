@@ -3,6 +3,7 @@ import './Error404Page.css';
 import Footer from '../../components/footer';
 import theme from '../../assets/theme';
 import { Typography } from "@mui/material";
+import GlobalNavBar from '../../components/GlobalNavBar';
 
 export const Error404Page = () => {
   const [playerPosition, setPlayerPosition] = useState(50);
@@ -94,6 +95,7 @@ export const Error404Page = () => {
 
   return (
     <div>
+      <GlobalNavBar/>
       <div className="game-area">
         <Typography
           variant="h4"
