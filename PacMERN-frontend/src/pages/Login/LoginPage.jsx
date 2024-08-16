@@ -40,7 +40,17 @@ export const LoginPage = () => {
 
     return (
       <>
-      <h2>LOG IN</h2> 
+        <Typography
+      variant="h4"
+      sx={{ 
+        fontFamily: theme.typography.fontFamily, 
+        textAlign: 'center', 
+        mb: 3, 
+        color: theme.palette.text.primary,
+      }}
+    >
+      LOG IN
+    </Typography>
         <Box 
           sx={{ 
             width: '100vw', 
