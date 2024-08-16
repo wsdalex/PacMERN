@@ -76,38 +76,47 @@ export const LoginPage = () => {
   margin="normal"
   required
   fullWidth
-  name="password"
-  label="PASSWORD"
-  type="password"
-  id="password"
-  autoComplete="current-password"
-  onChange={handlePasswordChange}
-  InputLabelProps={{      //this styles the lables 
+  id="email"
+  label="EMAIL ADDRESS"
+  name="email"
+  autoComplete="email"
+  autoFocus
+  onChange={handleEmailChange}
+  InputLabelProps={{
     sx: {
       bgcolor: theme.palette.background.default,
-      border: '3px solid black', 
+      border: '3px solid black', // Match border thickness with the button
       borderRadius: 0,
       color: theme.palette.text.primary, 
-      paddingX: 1, 
+      paddingX: 1, // Add some padding to match the button's feel
       '&.Mui-focused': {
         color: theme.palette.text.primary,
       },
     },
     shrink: true,
   }}
-  InputProps={{       // this styles the actual input box
+  InputProps={{
     sx: {
-      bgcolor: theme.palette.background.default, 
-      borderRadius: 0, 
-      border: '3px solid black', 
-      boxShadow: 3, 
+      bgcolor: theme.palette.background.default, // Match background color with the button
+      borderRadius: 0, // Match the button's border radius
+      border: '3px solid black', // Match border thickness with the button
+      boxShadow: 3, // Add shadow to match the button's shadow
       color: theme.palette.text.primary, 
+      '& .MuiOutlinedInput-notchedOutline': {
+        border: 'none', // Remove the inner fieldset border
+      },
+      '&:hover .MuiOutlinedInput-notchedOutline': {
+        border: 'none', // Remove the hover border
+      },
+      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+        border: 'none', // Remove the focus border
+      },
     },
   }}
 />
 {errors && <p className='error-message'>{errors.password}</p>}
 
-              <TextField
+<TextField
   variant="outlined"
   margin="normal"
   required
@@ -121,10 +130,10 @@ export const LoginPage = () => {
   InputLabelProps={{
     sx: {
       bgcolor: theme.palette.background.default,
-      border: '3px solid black',
+      border: '3px solid black', // Match border thickness with the button
       borderRadius: 0,
       color: theme.palette.text.primary, 
-      paddingX: 1, 
+      paddingX: 1, // Add some padding to match the button's feel
       '&.Mui-focused': {
         color: theme.palette.text.primary,
       },
@@ -133,15 +142,25 @@ export const LoginPage = () => {
   }}
   InputProps={{
     sx: {
-      bgcolor: theme.palette.background.default, 
-      borderRadius: 0, 
-      border: '3px solid black', 
-      boxShadow: 3, 
+      bgcolor: theme.palette.background.default, // Match background color with the button
+      borderRadius: 0, // Match the button's border radius
+      border: '3px solid black', // Match border thickness with the button
+      boxShadow: 3, // Add shadow to match the button's shadow
       color: theme.palette.text.primary, 
+      '& .MuiOutlinedInput-notchedOutline': {
+        border: 'none', // Remove the inner fieldset border
+      },
+      '&:hover .MuiOutlinedInput-notchedOutline': {
+        border: 'none', // Remove the hover border
+      },
+      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+        border: 'none', // Remove the focus border
+      },
     },
   }}
 />
 {errors && <p className='error-message'>{errors.password}</p>}
+
 <Button
   type='submit'
   fullWidth
