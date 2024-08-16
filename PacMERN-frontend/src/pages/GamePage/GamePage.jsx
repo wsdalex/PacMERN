@@ -7,10 +7,11 @@ import { GameCard } from "../../components/GameCard";
 
 const gameData = [
     {
-        name: "DVD Arcade",
-        img: "https://m.media-amazon.com/images/I/41fO8fe8WdL.png",
-        description: "This the description",
+        name: "Snake",
+        img: "https://tilcode.blog/wp-content/uploads/2019/04/Screen-Shot-2019-04-28-at-17.51.16.png",
+        description: "A simple version of snake.",
         colour: theme.palette.yellow.main,
+        path: "/snakegame"
 
     },
     {
@@ -18,6 +19,7 @@ const gameData = [
         img: "https://m.media-amazon.com/images/I/41fO8fe8WdL.png",
         description: "This the description",
         colour: theme.palette.green.main,
+        path: "/snakegame"
 
     },
     {
@@ -25,6 +27,7 @@ const gameData = [
         img: "https://m.media-amazon.com/images/I/41fO8fe8WdL.png",
         description: "This the description",
         colour: theme.palette.red.main,
+        path: "/snakegame"
 
     },
 ]
@@ -62,6 +65,7 @@ export const GamePage = () => {
         image={game.img} 
         description={game.description} 
         colour={game.colour} 
+        path={game.path}
     />
 ))}
 

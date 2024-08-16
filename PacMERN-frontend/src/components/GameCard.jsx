@@ -1,7 +1,14 @@
 import { Paper, Typography } from "@mui/material";
 import theme from "../assets/theme";
+import { useNavigate } from "react-router-dom";
+import Button from '@mui/material/Button';
+import { Link } from "react-router-dom";
 
 export const GameCard = (props) => {
+    const navigate = useNavigate();
+    const handleClick = () => {
+        navigate(props.path)
+    }
     return (
         <>
         <Paper 
@@ -12,6 +19,7 @@ export const GameCard = (props) => {
                             textAlign: 'center',
                             padding: 2,
                         }}
+                        
                     >
                         <Typography variant="h4">{props.name}</Typography>
                         <img 
@@ -26,6 +34,7 @@ export const GameCard = (props) => {
                         <Typography>
                             {props.description}
                         </Typography>
+                        <Button onClick={handleClick} >Play Game!</Button>
                     </Paper>
         </>
     )
