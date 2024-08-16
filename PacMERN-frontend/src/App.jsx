@@ -7,6 +7,17 @@ import { SignupPage } from "../src/pages/Signup/SignupPage";
 import { ProfilePage } from "../src/pages/Profile/ProfilePage";
 import "./assets/fonts/fonts.css"
 import { GamePage } from "./pages/GamePage/GamePage";
+import theme from "./assets/theme";
+import { CssBaseline } from "@mui/material";
+import { ThemeProvider } from "@mui/material";
+import "./assets/fonts/fonts.css";
+
+// Function to handle the redirection to a static file
+const RedirectToSnakeGame = () => {
+  window.location.href = "/Snake.html";
+  return null;
+};
+
 
 const isAuthenticated = () => {
   const token = localStorage.getItem("token");
@@ -34,6 +45,10 @@ const router = createBrowserRouter([
     path: "/signup",
     element: <SignupPage />,
   },
+  {
+    path: "/snakegame",
+    element: <RedirectToSnakeGame />,
+  },
   // any protected routes below - profile
   {
     element: <ProtectedRoute />,
@@ -60,6 +75,8 @@ const App = () => {
       <RouterProvider router={router} />
       
     </>
+
+
   );
 };
 
