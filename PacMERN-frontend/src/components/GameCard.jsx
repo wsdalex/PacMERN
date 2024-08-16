@@ -1,5 +1,5 @@
 import { Paper, Typography } from "@mui/material";
-import theme from "../../assets/theme";
+import theme from "../assets/theme";
 
 export const GameCard = (props) => {
     return (
@@ -7,7 +7,7 @@ export const GameCard = (props) => {
         <Paper 
                         elevation={3} 
                         sx={{ 
-                            backgroundColor: `${theme.palette.yellow.main}`,
+                            backgroundColor: props.colour,
                             flexGrow: 1,
                             textAlign: 'center',
                             padding: 2,
