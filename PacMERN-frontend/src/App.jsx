@@ -5,6 +5,8 @@ import { Error404Page } from "../src/pages/ErrorPage/Error404Page";
 import { LoginPage } from "../src/pages/Login/LoginPage";
 import { SignupPage } from "../src/pages/Signup/SignupPage";
 import { ProfilePage } from "../src/pages/Profile/ProfilePage";
+import "./assets/fonts/fonts.css"
+import { GamePage } from "./pages/GamePage/GamePage";
 import theme from "./assets/theme";
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material";
@@ -15,6 +17,7 @@ const RedirectToSnakeGame = () => {
   window.location.href = "/Snake.html";
   return null;
 };
+
 
 const isAuthenticated = () => {
   const token = localStorage.getItem("token");
@@ -54,6 +57,10 @@ const router = createBrowserRouter([
         path: "/profile",
         element: <ProfilePage />,
       },
+      {
+        path: "/games",
+        element: <GamePage/>
+      }
     ]
   },
   {
@@ -64,10 +71,12 @@ const router = createBrowserRouter([
 
 const App = () => {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
+    <>
       <RouterProvider router={router} />
-    </ThemeProvider>
+      
+    </>
+
+
   );
 };
 
