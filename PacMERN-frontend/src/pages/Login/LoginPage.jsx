@@ -6,7 +6,7 @@ import "./LoginPage.css";
 import GlobalNavBar from "../../components/GlobalNavBar";
 import Footer from "../../components/footer";
 import theme  from "../../assets/theme";
-
+import { Typography } from '@mui/material';
 
 export const LoginPage = () => {
     const [email, setEmail] = useState("");
@@ -39,98 +39,146 @@ export const LoginPage = () => {
     };
 
     return (
-        <Container className='login-container'>
-  <GlobalNavBar/>
-  <Box
-    component='form'
-    onSubmit={handleSubmit}
-    noValidate
-    sx={{ 
-      bgcolor: theme.palette.yellow.main, 
-      border: '3px solid black',
-      boxShadow: 3,
-      height: 'auto',
-      mt: 3,
-      p: 8,
-      borderRadius: 2,
-      display: 'flex',
-      flexDirection: 'column', // Arrange items in a column
-      alignItems: 'center', // Center items horizontally
-      gap: 2, // Add gap between items
-    }}
-  >
-    <TextField
-      variant="outlined"
-      margin="normal"
-      required
-      fullWidth
-      id="email"
-      label="Email Address"
-      name="email"
-      autoComplete="email"
-      autoFocus
-      onChange={handleEmailChange}
-      InputLabelProps={{
-        sx: {
-          color: theme.palette.text.primary, // Apply color to the label
-          '&.Mui-focused': {
-            color: theme.palette.text.primary, // Ensure color remains blue when focused
-          },
-          '&.MuiFormLabel-root': {
-            color: theme.palette.text.primary, // Ensure color is blue in normal state
-          }
-        },
-        shrink: true,
-      }}
-    />
-    {errors && <p className='error-message'>{errors.email}</p>}
-    <TextField
-      variant="outlined"
-      margin='normal'
-      required
-      fullWidth
-      name='password'
-      label='Password'
-      type='password'
-      id='password'
-      autoComplete='current-password'
-      onChange={handlePasswordChange}
-      InputLabelProps={{
-        sx: {
-          color: theme.palette.text.primary, // Apply color to the label
-          '&.Mui-focused': {
-            color: theme.palette.text.primary, // Ensure color remains blue when focused
-          },
-          '&.MuiFormLabel-root': {
-            color: theme.palette.text.primary, // Ensure color is blue in normal state
-          }
-        },
-        shrink: true,
-      }}
-    />
-    {errors && <p className='error-message'>{errors.password}</p>}
-    <Button
-      type='submit'
-      fullWidth
-      variant='outlined'
-      sx={{ mt: 3, 
-        mb: 2,
-        border: '3px solid black',
-        boxShadow: 3, }}
-    >
-      Sign In
-    </Button>
-    <Grid container justifyContent="flex-end">
-      <Grid item>
-        <Link to='/signup' variant='body2'>
-          {"Don't have an account? Sign Up"}
-        </Link>
-      </Grid>
-    </Grid>
-  </Box>
-  {errors && <p className='error-message'>{errors}</p>}
-  <Footer/>
-</Container>
+      <>
+      <h2>LOG IN</h2> 
+        <Box 
+          sx={{ 
+            width: '100vw', 
+            height: 'auto',
+            bgcolor: theme.palette.grey[200], 
+            marginX: 'calc(50% - 50vw)', 
+            paddingY: '5vw', 
+            borderTop: '3px solid black',
+            borderBottom: '3px solid black',
+          }}
+        >
+          <Container className='login-container' sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Box
+              component='form'
+              onSubmit={handleSubmit}
+              noValidate
+              sx={{ 
+                bgcolor: theme.palette.green.main, 
+                border: '3px solid black',
+                boxShadow: 3,
+                height: 'auto',
+                p: 8,
+                borderRadius: 0,
+                display: 'flex',
+                flexDirection: 'column', // Arrange items in a column
+                alignItems: 'center', // Center items horizontally
+                gap: 2, // Add gap between items
+              }}
+            >
+              <GlobalNavBar/>
+              <TextField
+  variant="outlined"
+  margin="normal"
+  required
+  fullWidth
+  name="password"
+  label="PASSWORD"
+  type="password"
+  id="password"
+  autoComplete="current-password"
+  onChange={handlePasswordChange}
+  InputLabelProps={{      //this styles the lables 
+    sx: {
+      bgcolor: theme.palette.background.default,
+      border: '3px solid black', 
+      borderRadius: 0,
+      color: theme.palette.text.primary, 
+      paddingX: 1, 
+      '&.Mui-focused': {
+        color: theme.palette.text.primary,
+      },
+    },
+    shrink: true,
+  }}
+  InputProps={{       // this styles the actual input box
+    sx: {
+      bgcolor: theme.palette.background.default, 
+      borderRadius: 0, 
+      border: '3px solid black', 
+      boxShadow: 3, 
+      color: theme.palette.text.primary, 
+    },
+  }}
+/>
+{errors && <p className='error-message'>{errors.password}</p>}
 
+              <TextField
+  variant="outlined"
+  margin="normal"
+  required
+  fullWidth
+  name="password"
+  label="PASSWORD"
+  type="password"
+  id="password"
+  autoComplete="current-password"
+  onChange={handlePasswordChange}
+  InputLabelProps={{
+    sx: {
+      bgcolor: theme.palette.background.default,
+      border: '3px solid black',
+      borderRadius: 0,
+      color: theme.palette.text.primary, 
+      paddingX: 1, 
+      '&.Mui-focused': {
+        color: theme.palette.text.primary,
+      },
+    },
+    shrink: true,
+  }}
+  InputProps={{
+    sx: {
+      bgcolor: theme.palette.background.default, 
+      borderRadius: 0, 
+      border: '3px solid black', 
+      boxShadow: 3, 
+      color: theme.palette.text.primary, 
+    },
+  }}
+/>
+{errors && <p className='error-message'>{errors.password}</p>}
+<Button
+  type='submit'
+  fullWidth
+  variant='outlined'
+  sx={{ 
+    mt: 3, 
+    mb: 2,
+    border: '3px solid black',
+    borderRadius: 0,
+    bgcolor: theme.palette.background.default, 
+    boxShadow: 3,
+    color: theme.palette.text.primary, 
+  }}
+>
+  Sign In
+</Button>
+              <Grid container justifyContent="flex-end">
+                <Grid item>
+                  <Typography variant="body2" sx={{ mt: 2 }}>
+                    <Link 
+                      to='/signup' 
+                      style={{
+                        color: theme.palette.primary.main,
+                        textDecoration: 'underline',
+                        fontWeight: 'bold',
+                      }}
+                    >
+                      {"Don't have an account? Sign up"}
+                    </Link>
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Box>
+            {errors && <p className='error-message'>{errors}</p>}
+          </Container>
+        </Box>
+        <Footer/>
+      </>
     );
 };
