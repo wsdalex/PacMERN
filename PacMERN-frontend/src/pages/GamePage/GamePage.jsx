@@ -3,29 +3,30 @@ import GlobalNavBar from "../../components/GlobalNavBar";
 import Footer from "../../components/footer";
 import theme from "../../assets/theme";
 import { GameCard } from "../../components/GameCard";
+import FixedContainer from "../../components/Container";
 
 
 const gameData = [
     {
-        name: "Snake",
+        name: "SNAKE",
         img: "https://tilcode.blog/wp-content/uploads/2019/04/Screen-Shot-2019-04-28-at-17.51.16.png",
-        description: "A simple version of snake.",
+        description: "AS SEEN ON NOKIA 3210!",
         colour: theme.palette.yellow.main,
         path: "/snakegame"
 
     },
     {
-        name: "DVD Arcade",
+        name: "DVD ARCADE",
         img: "https://m.media-amazon.com/images/I/41fO8fe8WdL.png",
-        description: "This the description",
+        description: "THE ULTIMATE CROWD PLEASER!",
         colour: theme.palette.green.main,
         path: "/snakegame"
 
     },
     {
-        name: "DVD Arcade",
+        name: "NEXT GAME",
         img: "https://m.media-amazon.com/images/I/41fO8fe8WdL.png",
-        description: "This the description",
+        description: "THIS IS THE DESCRIPTION",
         colour: theme.palette.red.main,
         path: "/snakegame"
 
@@ -36,7 +37,7 @@ export const GamePage = () => {
     return (
         <>
             <GlobalNavBar />
-            <Container 
+            <FixedContainer 
                 maxWidth={false} 
                 disableGutters 
                 sx={{
@@ -70,7 +71,7 @@ export const GamePage = () => {
 ))}
 
                 </Box>
-            </Container>
+            </FixedContainer>
             <Footer />
         </>
     );
