@@ -1,7 +1,9 @@
-// src/Error404Page.js
-
 import React, { useState, useEffect } from 'react';
 import './Error404Page.css';
+import Footer from '../../components/footer';
+import theme from '../../assets/theme';
+import { Typography } from "@mui/material";
+import GlobalNavBar from '../../components/GlobalNavBar';
 
 export const Error404Page = () => {
   const [playerPosition, setPlayerPosition] = useState(50);
@@ -36,10 +38,10 @@ export const Error404Page = () => {
       setBullets((prevBullets) =>
         prevBullets.map((bullet) => ({
           ...bullet,
-          top: bullet.top - 5,
+          top: bullet.top - 12, // Further increase bullet speed
         }))
       );
-    }, 50); // Decrease interval time for faster bullet movement
+    }, 20); // Decrease interval time for faster bullet movement
 
     return () => clearInterval(interval);
   }, []);
@@ -54,7 +56,7 @@ export const Error404Page = () => {
         const remainingTargets = prevTargets.filter((target) => {
           const hit = bullets.some(
             (bullet) =>
-              bullet.top < 15 && // Adjusted for better collision detection
+              bullet.top < 20 && // Adjusted for better collision detection
               bullet.left >= target.position &&
               bullet.left <= target.position + 5
           );
@@ -73,13 +75,13 @@ export const Error404Page = () => {
           (bullet) =>
             !targets.some(
               (target) =>
-                bullet.top < 15 &&
+                bullet.top < 20 &&
                 bullet.left >= target.position &&
                 bullet.left <= target.position + 5
             )
         )
       );
-    }, 50); // Decrease interval time for faster collision detection
+    }, 15); // Further decrease interval time for faster collision detection
 
     return () => clearInterval(interval);
   }, [bullets, targets]);
@@ -92,37 +94,61 @@ export const Error404Page = () => {
   };
 
   return (
-    <div className="game-area">
-      <h1>404 - Page Not Found</h1>
-      <div className="targets">
-        {targets.map((target) => (
-          <div
-            key={target.id}
-            className="target"
-            style={{ left: `${target.position}%` }}
-          >
-            {target.number}
+    <div>
+      <GlobalNavBar/>
+      <div className="game-area">
+        <Typography
+          variant="h4"
+          sx={{
+            fontFamily: theme.typography.retro,
+            color: theme.palette.text.primary,
+            textAlign: "center",
+            marginBottom: 4,
+          }}
+        >
+          404 - Page Not Found
+        </Typography>
+        <div className="targets">
+          {targets.map((target) => (
+            <div
+              key={target.id}
+              className="target"
+              style={{ left: `${target.position}%` }}
+            >
+              {target.number}
+            </div>
+          ))}
+        </div>
+        <div className="player" style={{ left: `${playerPosition}%` }} />
+        <div className="bullets">
+          {bullets.map((bullet) => (
+            <div
+              key={bullet.id}
+              className="bullet"
+              style={{ left: `${bullet.left}%`, top: `${bullet.top}%` }}
+            />
+          ))}
+        </div>
+        {gameOver && (
+          <div className="game-over">
+              <Typography
+          variant="h4"
+          sx={{
+            fontFamily: theme.typography.retro,
+            color: theme.palette.text.green,
+            textAlign: "center",
+            marginBottom: 4,
+          }}
+        >
+            You Win! Return to the{" "}
+            <a href="/" className="homepage-link">
+              HomePage
+            </a>
+            </Typography>
           </div>
-        ))}
+        )}
       </div>
-      <div className="player" style={{ left: `${playerPosition}%` }} />
-      <div className="bullets">
-        {bullets.map((bullet) => (
-          <div
-            key={bullet.id}
-            className="bullet"
-            style={{ left: `${bullet.left}%`, top: `${bullet.top}%` }}
-          />
-        ))}
-      </div>
-      {gameOver && (
-  <div className="game-over">
-    You Win! Return to the{' '}
-    <a href="/" className="homepage-link">
-      HomePage
-    </a>
-  </div>
-)}
+      <Footer />
     </div>
   );
 };
