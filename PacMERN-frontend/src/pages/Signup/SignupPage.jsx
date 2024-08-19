@@ -1,7 +1,10 @@
 import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { Container, TextField, Button, Grid, Typography } from '@mui/material';
+import { useNavigate} from 'react-router-dom';
+import { Box, Container, TextField, Button, Typography } from '@mui/material';
 import { signup } from '../../services/authentication';
+import theme  from "../../assets/theme";
+import Footer from "../../components/footer";
+import GlobalNavBar from '../../components/GlobalNavBar';
 
 export const SignupPage = () => {
     const [name, setName] = useState('');
@@ -40,75 +43,113 @@ export const SignupPage = () => {
     };
 
     return (
-        <Container maxWidth="xs">
-            <Typography component="h1" variant="h5">
-                Sign up
+        <>
+                <Typography 
+                variant="h4"
+                sx={{ 
+                    fontFamily: theme.typography.fontFamily, 
+                    textAlign: 'center', 
+                    mb: 3, 
+                    color: theme.palette.text.primary,
+                }}
+            >
+                SIGN UP
             </Typography>
-            <form onSubmit={handleSubmit} noValidate> 
-                {/* noValidate is a boolean attribute that indicates that the form data should not be validated on submission. Helped with testing */}
-                <TextField
-                    fullWidth
-                    margin="normal"
-                    label="Name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                />
-                <TextField
-                    fullWidth
-                    margin="normal"
-                    label="Email"
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
-                <TextField
-                    fullWidth
-                    margin="normal"
-                    label="Password"
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-                <TextField
-                    fullWidth
-                    margin="normal"
-                    label="Confirm Password"
-                    type="password"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    required
-                />
-                <TextField
-                    fullWidth
-                    margin="normal"
-                    label="Profile Image URL (optional)"
-                    value={profileImage}
-                    onChange={(e) => setProfileImage(e.target.value)}
-                />
-                <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    color="primary"
-                >
-                    Sign Up
-                </Button>
-                <Grid container justifyContent="flex-end">
-                    <Grid item>
-                        <Link to="/login">
-                            Already have an account? Sign in
-                        </Link>
-                    </Grid>
-                </Grid>
-            </form>
-            {errorMessage && (
-                <Typography color="error" role="alert" data-testid="error-message">
-                    {errorMessage}
-                </Typography>
-            )}
-        </Container>
+            <Box 
+                sx={{ 
+                    width: '100vw', 
+                    height: 'auto',
+                    bgcolor: theme.palette.grey[200], 
+                    marginX: 'calc(50% - 50vw)', 
+                    paddingY: '1vw', 
+                    borderTop: '3px solid black',
+                    borderBottom: '3px solid black',
+                }}
+            >
+                <Container className='signup-container' sx={{ display: 'flex', justifyContent: 'center' }}>
+                    <Box
+                        component='form'
+                        onSubmit={handleSubmit}
+                        noValidate
+                        sx={{ 
+                            width: '30vw',
+                            bgcolor: theme.palette.yellow.main, 
+                            border: '3px solid black',
+                            boxShadow: 3,
+                            height: 'auto',
+                            p: 4,
+                            borderRadius: 0,
+                            display: 'flex',
+                            flexDirection: 'column', 
+                            alignItems: 'center', 
+                            gap: 2, 
+                        }}
+                    >
+                        <GlobalNavBar />
+    
+                        <TextField
+                            fullWidth
+                            margin="normal"
+                            label="Name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            required
+                        />
+                        <TextField
+                            fullWidth
+                            margin="normal"
+                            label="Email"
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                        <TextField
+                            fullWidth
+                            margin="normal"
+                            label="Password"
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                        <TextField
+                            fullWidth
+                            margin="normal"
+                            label="Confirm Password"
+                            type="password"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            required
+                        />
+                        <TextField
+                            fullWidth
+                            margin="normal"
+                            label="Profile Image URL (optional)"
+                            value={profileImage}
+                            onChange={(e) => setProfileImage(e.target.value)}
+                        />
+                        <Button
+                            type='submit'
+                            fullWidth
+                            variant='outlined'
+                            sx={{ 
+                                mt: 3, 
+                                mb: 2,
+                                border: '3px solid black',
+                                borderRadius: 0,
+                                bgcolor: theme.palette.background.default, 
+                                boxShadow: 3,
+                                color: theme.palette.text.primary, 
+                            }}
+                        >
+                            Sign Up
+                        </Button>
+                    </Box>
+                </Container>
+            </Box>
+    
+            <Footer />
+        </>
     );
 };
