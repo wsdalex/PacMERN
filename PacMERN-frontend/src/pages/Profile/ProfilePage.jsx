@@ -1,5 +1,7 @@
 import { getToken } from "../../services/authentication";
 import { useNavigate } from "react-router-dom";
+import GlobalNavBar from "../../components/GlobalNavBar";
+import FixedContainer from "../../components/Container";
 
 export const ProfilePage = () => {
     const navigate = useNavigate();
@@ -24,8 +26,11 @@ export const ProfilePage = () => {
 
     return (
         <div>
+            <GlobalNavBar />
             <h1 data-testid="welcome-message">Welcome, {user_name}</h1>
             <img src={profile_image} alt="Profile" />
+            <FixedContainer>
+            </FixedContainer>
         </div>
     );
 };
