@@ -23,7 +23,7 @@ export const LoginPage = () => {
             localStorage.setItem("user", JSON.stringify(user));
             localStorage.setItem("token", token);
             console.log("logged in user's token -> " + token);
-            navigate("/profile");
+            navigate("/games");
         } catch (err) {
             console.error(err);
             setErrors(err.message);
