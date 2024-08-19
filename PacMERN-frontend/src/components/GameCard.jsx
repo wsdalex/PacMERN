@@ -20,10 +20,12 @@ export const GameCard = (props) => {
                             textAlign: 'center',
                             padding: "15px",
                             border: '3px solid black',
-                            maxHeight: "280px",
-                            maxWidth: "250px",
+                            maxHeight: "auto",
+                            width: "100vw",
                             justifyContent: 'center',
                             gap: '10px',
+                            boxSizing: 'border-box',
+                            overflow: 'hidden',
                             
                         }}
                         
@@ -37,7 +39,11 @@ export const GameCard = (props) => {
                             borderRadius: '0px',       // Optional: Add rounded corners
                             display: 'inline-block',
                             marginBottom: '10px',
-                            fontSize: '30px'   // Optional: Shrink to fit the text content
+                            fontSize: 'calc(1.5vw + 8px)',  // Responsive font size based on viewport width
+                            lineHeight: '1.2',  // Adjust line-height for better readability
+                            // whiteSpace: 'nowrap', // Prevent text from wrapping
+                            overflow: 'hidden',  // Ensure long text doesn't overflow
+                            textOverflow: 'ellipsis',  // Add ellipsis to long overflowing text
                         }}>
                             {props.name}</Typography>
                         <img 
@@ -59,7 +65,10 @@ export const GameCard = (props) => {
                             color: 'black',           // Change font color
                             padding: '2px',
                             display: 'inline-block',
-                            marginBottom: '0px',   // Optional: Shrink to fit the text content
+                            marginBottom: '0px', 
+                            fontSize: 'calc(1vw + 8px)',  // Responsive font size based on viewport width
+                            lineHeight: '1.2',  // Adjust line-height for better readability
+                            overflowWrap: 'break-word', // Ensure long words break to the next line  // Optional: Shrink to fit the text content
                         }}>
                             {props.description}
                         </Typography>

@@ -11,13 +11,13 @@ export default function FixedContainer({ children }) {
         <Box 
        sx={{ 
         width: '100vw', 
-        height: "25vw",
+        height: "auto",
         bgcolor: theme.palette.primary.main, 
-        color: '#fff', 
         marginX: 'calc(50% - 50vw)', 
         textAlign: "center",
         display: 'flex', 
-        justifyContent: 'center', //horizontally
+        paddingY: '10vw', 
+        justifyContent: 'space-evenly', //horizontally
         alignItems: 'center', //vertically
         borderTop: '3px solid black',
         borderBottom: '3px solid black'
@@ -25,9 +25,10 @@ export default function FixedContainer({ children }) {
         <Container maxWidth="lg" 
         sx={{ 
             display: 'flex', 
-            justifyContent: 'center', 
+            justifyContent: 'space-evenly', 
             alignItems: 'center', 
-            gap: '15rem' }}>
+            flexDirection: {xs: "column", md: "row"}
+         }}>
         {children}
         </Container>
         </Box>

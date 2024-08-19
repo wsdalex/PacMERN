@@ -11,9 +11,7 @@ export default function YellowBox({ children }) {
        sx={{ 
         width: '25vw', 
         height: '15vw',
-        bgcolor: theme.palette.yellow.main, 
-        color: '#fff', 
-        marginX: 'calc(50% - 50vw)', 
+        bgcolor: theme.palette.yellow.main,  
         textAlign: "center",
         display: "flex",
         border: '3px solid black',

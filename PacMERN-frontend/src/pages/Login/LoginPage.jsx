@@ -55,7 +55,7 @@ export const LoginPage = () => {
           sx={{ 
             width: '100vw', 
             height: 'auto',
-            bgcolor: theme.palette.grey[200], 
+            bgcolor: theme.palette.primary.main, 
             marginX: 'calc(50% - 50vw)', 
             paddingY: '5vw', 
             borderTop: '3px solid black',
