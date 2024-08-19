@@ -17,6 +17,8 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import PeopleIcon from '@mui/icons-material/People';
 import theme from '../assets/theme';
+import { useNavigate } from 'react-router-dom';
+import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -60,15 +62,21 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
+
 export default function GlobalNavBar() {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+    const navigate = useNavigate();
 
-    const handleProfileMenuOpen = (event) => {
-        setAnchorEl(event.currentTarget);
+    const handleProfileSubmit = (event) => {
+        navigate("/profile")
+    };
+
+    const handleGamePageSubmit = (event) => {
+        navigate("/games")
     };
 
     const handleMobileMenuClose = () => {
@@ -143,7 +151,7 @@ export default function GlobalNavBar() {
                 </IconButton>
                 <p>Notifications</p>
             </MenuItem>
-            <MenuItem onClick={handleProfileMenuOpen}>
+            <MenuItem onClick={handleProfileSubmit}>
                 <IconButton
                     size="large"
                     aria-label="account of current user"
@@ -202,35 +210,57 @@ export default function GlobalNavBar() {
                             inputProps={{ 'aria-label': 'search' }}
                         />
                     </Search>
+
+                    
                     <Box sx={{ flexGrow: 1 }} />
                     <Box sx={{ display: { xs: 'none', md: 'flex', color: "#069330" } }}>
+                        
+                    <IconButton
+                            size="large"
+                            edge="end"
+                            aria-label="game page"
+                            aria-controls={menuId}
+                            aria-haspopup="true"
+                            onClick={handleGamePageSubmit}
+                            sx={{ border: "2px solid black", color: 'white', backgroundColor: "#000099", ml: 1 , width: 41, height: 41, borderRadius: '50%', marginRight: '16px'}} 
+                        >
+                        <SportsEsportsIcon />
+                        </IconButton>
+
+
                         <IconButton
                             size="large"
                             aria-label="show 4 new mails"
                             sx={{ border: "2px solid black", color: 'white', backgroundColor: "#FFC001", mr: 1 , width: 41, height: 41, borderRadius: '50%'}} 
                         >
                             <Badge badgeContent={4} color="error">
-                                <MailIcon />
+                            <MailIcon />
                             </Badge>
                         </IconButton>
+
+
                         <IconButton
                             size="large"
                             aria-label="friends"
                             sx={{ border: "2px solid black", color: 'white', backgroundColor: "#069330", mx: 1 , width: 41, height: 41, borderRadius: '50%'}} 
                         >
-                            <PeopleIcon />
+                        <PeopleIcon />
                         </IconButton>
+
+
                         <IconButton
                             size="large"
                             edge="end"
                             aria-label="account of current user"
                             aria-controls={menuId}
                             aria-haspopup="true"
-                            onClick={handleProfileMenuOpen}
+                            onClick={handleProfileSubmit}
                             sx={{ border: "2px solid black", color: 'white', backgroundColor: "#ff2d1e", ml: 1 , width: 41, height: 41, borderRadius: '50%'}} 
                         >
-                            <AccountCircle />
+                        <AccountCircle />
                         </IconButton>
+
+
                     </Box>
                     <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
