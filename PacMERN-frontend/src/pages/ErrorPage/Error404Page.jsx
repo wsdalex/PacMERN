@@ -148,6 +148,17 @@ export const Error404Page = () => {
           </div>
         )}
       </div>
+      <Typography
+          variant="body1"
+          sx={{
+            fontFamily: theme.typography.retro,
+            color: theme.palette.text.primary,
+            textAlign: "center",
+            marginBottom: 4,
+          }}
+        >
+          Use space bar and arrows to play
+        </Typography>
       <Footer />
     </div>
   );
