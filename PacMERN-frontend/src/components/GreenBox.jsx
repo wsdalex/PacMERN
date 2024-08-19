@@ -13,7 +13,7 @@ export default function GreenBox({ children }) {
         height: '15vw',
         bgcolor: theme.palette.green.main, 
         color: '#fff', 
-        marginX: 'calc(50% - 50vw)', 
+        // marginX: 'calc(50% - 50vw)', 
         textAlign: "center",
         display: "flex",
         border: '3px solid black',
