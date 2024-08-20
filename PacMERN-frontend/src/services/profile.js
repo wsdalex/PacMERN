@@ -1,5 +1,5 @@
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
-import getToken from "./authentication";
+import { getToken } from "./authentication";
 
 export const getProfile = async (id) => {
     const requestOptions = {
@@ -22,4 +22,5 @@ export const getProfile = async (id) => {
         console.log(error);
         throw new Error("Unable to fetch profile");
     }
+    
 };

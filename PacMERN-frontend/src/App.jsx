@@ -11,6 +11,8 @@ import theme from "./assets/theme";
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material";
 import "./assets/fonts/fonts.css";
+import MessagePage from "./pages/Message/MessagePage";
+import ChatWindow from "./pages/Message/ChatWindow";
 
 // Function to handle the redirection to a static file
 const RedirectToSnakeGame = () => {
@@ -59,7 +61,15 @@ const router = createBrowserRouter([
       },
       {
         path: "/games",
-        element: <GamePage/>
+        element: <GamePage />
+      },
+      {
+        path: "/messages",
+        element: <MessagePage />
+      },
+      {
+        path: "/message/:userId",
+        element: <ChatWindow />
       }
     ]
   },
