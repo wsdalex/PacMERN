@@ -45,7 +45,7 @@ export const ProfilePage = () => {
     return (
         <div>
             <GlobalNavBar />
-            <Box 
+            {profile ? <><Box 
                 sx={{ 
                     display: 'flex',
                     justifyContent: 'center', 
@@ -141,9 +141,13 @@ export const ProfilePage = () => {
                 >
                     Recently played: 
                     <br />
-                    {profile.recentlyPlayed}
+                    {profile.recentlyPlayed[0].game}
                 </Typography>
             </FixedContainer>
+            </>
+            : (
+                <Typography variant="h6">Loading profile...</Typography>
+            )}
         </div>
     );
 };
