@@ -4,18 +4,21 @@ import GlobalNavBar from "../../components/GlobalNavBar";
 import FixedContainer from "../../components/Container";
 import { Box, Typography } from "@mui/material";
 import theme from "../../assets/theme";
+import { useEffect, useState } from "react";
+import { getProfile } from "../../services/profile";
 
 export const ProfilePage = () => {
+    const [profile, setProfile] = useState(null)
     const navigate = useNavigate();
     const user = localStorage.getItem("user");
+    let userId = null; 
     let user_name = ""; 
     let profile_image = "";
 
     if (user) {
         try {
             const userObj = JSON.parse(user);
-            user_name = userObj.name;
-            profile_image = userObj.profileImage;
+            userId = userObj.id
         } catch (error) {
             console.error("Error parsing user data", error);
         }
@@ -25,6 +28,19 @@ export const ProfilePage = () => {
     if (!token) {
         navigate("/login");
     }
+
+    useEffect(() => {
+        if (userId) {
+            getProfile(userId)
+                .then((data) => {
+                    setProfile(data);
+                    console.log(data); // Check what data is being retrieved
+                })
+                .catch((error) => {
+                    console.error("Error fetching profile data", error);
+                });
+        }
+    }, [userId]);
 
     return (
         <div>
@@ -98,7 +114,7 @@ export const ProfilePage = () => {
                                         marginLeft: '2vw'
                                     }}
                                 >
-                                    Name: {user_name}
+                                    Name: {profile.name}
                                     <br />
                                     <br />
                                     Score: 0
@@ -107,7 +123,7 @@ export const ProfilePage = () => {
                                     Badges: 0
                                     <br />
                                     <br />
-                                    Friends: 0
+                                    Friends: {profile.friends.length}
                                 </Typography>
                             </Box>
 
@@ -123,7 +139,9 @@ export const ProfilePage = () => {
                         textAlign: 'start', 
                     }}
                 >
-                    Recently played:
+                    Recently played: 
+                    <br />
+                    {profile.recentlyPlayed}
                 </Typography>
             </FixedContainer>
         </div>
