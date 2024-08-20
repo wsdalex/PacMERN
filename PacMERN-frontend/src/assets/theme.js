@@ -24,9 +24,13 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: "NintendoFont",
-    retro: "RetroFont",
-  },
+    fontFamily: "NintendoFont, Arial, sans-serif", // default font family
+    retro: {
+        fontFamily: "RetroFont", // custom retro font family
+    },
+},
+
+
   components: {
     MuiTextField: {
       defaultProps: {

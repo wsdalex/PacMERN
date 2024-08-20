@@ -37,6 +37,16 @@ export const GamePage = () => {
     return (
         <>
             <GlobalNavBar />
+            <Typography variant="h4" 
+                    sx={{ 
+                        color: "black",
+                        fontFamily: `${theme.typography.retro.fontFamily}`,
+                        marginBottom: 4, // Adds space between the heading and game cards
+                        textAlign: 'center', // Centers the heading text
+                    }}
+                >
+                    Choose a game!
+                </Typography>
             <FixedContainer 
                 maxWidth={false} 
                 disableGutters 
@@ -46,7 +56,8 @@ export const GamePage = () => {
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    paddingY: 4, // Adds padding at the top and bottom
+                    paddingY: 4,
+                    flexDirection: 'column', // Adds padding at the top and bottom
                 }}
             >
                 <Box 
