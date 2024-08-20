@@ -10,12 +10,14 @@ export const ProfilePage = () => {
     const user = localStorage.getItem("user");
     let user_name = ""; 
     let profile_image = "";
+    let recently_played = "";
 
     if (user) {
         try {
             const userObj = JSON.parse(user);
             user_name = userObj.name;
             profile_image = userObj.profileImage;
+            recently_played = userObj.recentlyPlayed
         } catch (error) {
             console.error("Error parsing user data", error);
         }
@@ -124,6 +126,7 @@ export const ProfilePage = () => {
                     }}
                 >
                     Recently played:
+                    {recently_played}
                 </Typography>
             </FixedContainer>
         </div>
