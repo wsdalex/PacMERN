@@ -41,7 +41,7 @@ const updateRecentlyPlayed = async (req, res) => {
     const update = { recentlyPlayed: recentlyPlayed };
     const user = await User.findOneAndUpdate(filter, update);
     console.log(recentlyPlayed);
-    return res.status(200).json({ message: "Succesfully updated" });
+    return res.status(200).json({ message: "Successfully updated" });
   } catch (error) {
     console.log(error);
     return res
