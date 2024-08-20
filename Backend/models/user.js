@@ -1,6 +1,12 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
+const recentlyPlayedSchema = new mongoose.Schema(
+  {
+    game: String,
+  },
+  { timestamps: true }
+);
 const UserSchema = new mongoose.Schema({
   name: String,
   email: { type: String, required: true, unique: true }, // added unique: true to make sure the email can only be used once
@@ -11,7 +17,7 @@ const UserSchema = new mongoose.Schema({
   friendRequestsReceived: [
     { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   ],
-  recentlyPlayed: String,
+  recentlyPlayed: [recentlyPlayedSchema],
 });
 
 UserSchema.pre("save", function (next) {

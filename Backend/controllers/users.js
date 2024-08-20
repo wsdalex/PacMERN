@@ -37,10 +37,11 @@ const getProfile = async (req, res) => {
 const updateRecentlyPlayed = async (req, res) => {
   try {
     const recentlyPlayed = req.body.recentlyPlayed;
-    const filter = { _id: req.body.id };
-    const update = { recentlyPlayed: recentlyPlayed };
-    const user = await User.findOneAndUpdate(filter, update);
-    console.log(recentlyPlayed);
+
+    const user = await User.findById(req.body.id);
+    user.recentlyPlayed.push({ game: recentlyPlayed });
+    console.log(user.recentlyPlayed);
+    await user.save();
     return res.status(200).json({ message: "Successfully updated" });
   } catch (error) {
     console.log(error);
