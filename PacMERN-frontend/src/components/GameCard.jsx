@@ -3,13 +3,31 @@ import theme from "../assets/theme";
 import { useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
 import { Link } from "react-router-dom";
+import { updateRecentlyPlayed } from "../services/recentlyPlayed";
 
 
 export const GameCard = (props) => {
+
     const navigate = useNavigate();
-    const handleClick = () => {
+
+    const handleClick = async () => {
+        const user = localStorage.getItem("user")
+        const gameName = props.name
+        let userId;
+        if (user) {
+            try {
+      const userObj = JSON.parse(user);
+      userId = userObj.id
+
+            } catch (error) {
+                console.error("Error parsing user data", error);
+              }
+
+        }
+        await updateRecentlyPlayed(userId, gameName)
         navigate(props.path)
     }
+
     return (
         <>
         <Paper 

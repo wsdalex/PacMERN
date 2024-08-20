@@ -11,6 +11,7 @@ const UserSchema = new mongoose.Schema({
   friendRequestsReceived: [
     { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   ],
+  recentlyPlayed: String,
 });
 
 UserSchema.pre("save", function (next) {
