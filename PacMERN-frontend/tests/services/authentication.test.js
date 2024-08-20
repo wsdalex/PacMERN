@@ -1,6 +1,6 @@
 import createFetchMock from "vitest-fetch-mock";
-import { describe, vi } from "vitest";
-import { login, signup } from "../../src/services/authentication";
+import { describe, vi, beforeEach, afterEach } from "vitest";
+import { login, signup, getToken } from "../../src/services/authentication";
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
@@ -8,18 +8,42 @@ const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 createFetchMock(vi).enableMocks();
 
 describe("authentication service", () => {
+    beforeEach(() => {
+        // Clear all mocks before each test
+        vi.clearAllMocks();
+        // Clear localStorage before each test
+        localStorage.clear();
+    });
+
+    afterEach(() => {
+        // Clear all mocks after each test
+        vi.clearAllMocks();
+        // Clear localStorage after each test
+        localStorage.clear();
+    });
+
+    describe("getToken", () => {
+        test("returns the token from localStorage", () => {
+            localStorage.setItem("token", "testToken");
+            expect(getToken()).toBe("testToken");
+        });
+
+        test("returns null if no token in localStorage", () => {
+            expect(getToken()).toBe(null);
+        });
+    });
+
     describe("login", () => {
         test("calls the backend url for a token", async () => {
             const testEmail = "test@testEmail.com";
             const testPassword = "12345678";
 
-            fetch.mockResponseOnce(JSON.stringify({ token: "testToken" }), {
+            fetch.mockResponseOnce(JSON.stringify({ token: "testToken", user: { id: 1, name: "Test User" } }), {
                 status: 201,
             });
 
             await login(testEmail, testPassword);
 
-            // This is an array of the arguments that were last passed to fetch
             const fetchArguments = fetch.mock.lastCall;
             const url = fetchArguments[0];
             const options = fetchArguments[1];
@@ -32,56 +56,59 @@ describe("authentication service", () => {
             expect(options.headers["Content-Type"]).toEqual("application/json");
         });
 
-        test("returns the token if the request was a success", async () => {
+        test("returns the session if the request was a success", async () => {
             const testEmail = "test@testEmail.com";
             const testPassword = "12345678";
+            const mockResponse = { token: "testToken", user: { id: 1, name: "Test User" } };
 
-            fetch.mockResponseOnce(JSON.stringify({ token: "testToken" }), {
+            fetch.mockResponseOnce(JSON.stringify(mockResponse), {
                 status: 201,
             });
 
             const session = await login(testEmail, testPassword);
-            expect(session.token).toEqual("testToken");
+            expect(session).toEqual(mockResponse);
+            expect(localStorage.getItem("token")).toBe("testToken");
         });
 
         test("throws an error if the request failed", async () => {
             const testEmail = "test@testEmail.com";
             const testPassword = "12345678";
+            const errorMessage = "Invalid credentials";
 
             fetch.mockResponseOnce(
-                JSON.stringify({
-                    message:
-                        "Received status 403 when logging in. Expected 201",
-                }),
-                {
-                    // Adjusted mock response to match test assertion
-                    status: 403,
-                }
+                JSON.stringify({ message: errorMessage }),
+                { status: 401 }
             );
 
-            try {
-                await login(testEmail, testPassword);
-            } catch (err) {
-                expect(err.message).toEqual(
-                    "Received status 403 when logging in. Expected 201"
-                );
-            }
+            await expect(login(testEmail, testPassword)).rejects.toThrow(errorMessage);
+        });
+
+        test("throws a default error message if no message in response", async () => {
+            const testEmail = "test@testEmail.com";
+            const testPassword = "12345678";
+
+            fetch.mockResponseOnce(
+                JSON.stringify({}),
+                { status: 500 }
+            );
+
+            await expect(login(testEmail, testPassword)).rejects.toThrow("Received status 500 when logging in. Expected 201");
         });
     });
 
     describe("signup", () => {
-        test("calls the backend url for a token", async () => {
+        test("calls the backend url for signup", async () => {
             const testName = "test name";
             const testEmail = "test@testEmail.com";
             const testPassword = "12345678";
+            const testProfileImage = "test-image-url";
 
             fetch.mockResponseOnce("", {
                 status: 201,
             });
 
-            await signup(testName, testEmail, testPassword);
+            await signup(testName, testEmail, testPassword, testProfileImage);
 
-            // This is an array of the arguments that were last passed to fetch
             const fetchArguments = fetch.mock.lastCall;
             const url = fetchArguments[0];
             const options = fetchArguments[1];
@@ -93,46 +120,53 @@ describe("authentication service", () => {
                     name: testName,
                     email: testEmail,
                     password: testPassword,
+                    profileImage: testProfileImage,
                 })
             );
             expect(options.headers["Content-Type"]).toEqual("application/json");
         });
 
-        test("returns nothing if the signup request was a success", async () => {
+        test("returns undefined if the signup request was a success", async () => {
             const testName = "test name";
             const testEmail = "test@testEmail.com";
             const testPassword = "12345678";
+            const testProfileImage = "test-image-url";
 
-            fetch.mockResponseOnce(JSON.stringify(""), {
+            fetch.mockResponseOnce("", {
                 status: 201,
             });
 
-            const token = await signup(testName, testEmail, testPassword);
-            expect(token).toEqual(undefined);
+            const result = await signup(testName, testEmail, testPassword, testProfileImage);
+            expect(result).toBeUndefined();
         });
 
-        test("throws an error if the request failed", async () => {
+        test("throws an error if the request failed with custom message", async () => {
             const testName = "test name";
             const testEmail = "test@testEmail.com";
             const testPassword = "12345678";
+            const testProfileImage = "test-image-url";
+            const errorMessage = "Email already exists";
 
             fetch.mockResponseOnce(
-                JSON.stringify({
-                    message:
-                        "Received status 400 when signing up. Expected 201",
-                }), // Adjusted mock response to match test assertion
-                {
-                    status: 400,
-                }
+                JSON.stringify({ message: errorMessage }),
+                { status: 400 }
             );
 
-            try {
-                await signup(testName, testEmail, testPassword);
-            } catch (err) {
-                expect(err.message).toEqual(
-                    "Received status 400 when signing up. Expected 201"
-                );
-            }
+            await expect(signup(testName, testEmail, testPassword, testProfileImage)).rejects.toThrow(errorMessage);
+        });
+
+        test("throws a default error message if no message in response", async () => {
+            const testName = "test name";
+            const testEmail = "test@testEmail.com";
+            const testPassword = "12345678";
+            const testProfileImage = "test-image-url";
+
+            fetch.mockResponseOnce(
+                JSON.stringify({}),
+                { status: 500 }
+            );
+
+            await expect(signup(testName, testEmail, testPassword, testProfileImage)).rejects.toThrow("Received status 500 when signing up. Expected 201");
         });
     });
 });

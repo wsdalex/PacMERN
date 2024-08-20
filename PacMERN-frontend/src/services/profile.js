@@ -22,4 +22,5 @@ export const getProfile = async (id) => {
         console.log(error);
         throw new Error("Unable to fetch profile");
     }
+    
 };

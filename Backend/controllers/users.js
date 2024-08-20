@@ -50,9 +50,20 @@ const updateRecentlyPlayed = async (req, res) => {
   }
 };
 
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find({}, '_id name email profileImage');
+    return res.status(200).json(users);
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({ message: 'Server error' })
+  }
+}
+
 const UsersController = {
   create: create,
   getProfile: getProfile,
+  getAllUsers: getAllUsers,
   updateRecentlyPlayed: updateRecentlyPlayed,
 };
 
