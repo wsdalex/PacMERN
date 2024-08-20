@@ -150,4 +150,19 @@ describe("User model", () => {
     genSaltSpy.mockRestore(); // Restore original method after test
     hashSpy.mockRestore(); // Restore original method after test
   });
+
+  test("User has recently played", async () => {
+    const user = new User({
+      email: "someone@example.com",
+      password: "password",
+      name: "someone",
+      recentlyPlayed: "Snake",
+    });
+
+    await user.save();
+
+    const users = await User.find();
+
+    expect(users[0].recentlyPlayed).toEqual("Snake");
+  });
 });

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useNavigate} from 'react-router-dom';
-import { Box, Container, TextField, Button, Typography } from '@mui/material';
+import { useNavigate, Link} from 'react-router-dom';
+import { Box, Container, TextField, Button, Typography, Grid } from '@mui/material';
 import { signup } from '../../services/authentication';
 import theme  from "../../assets/theme";
 import Footer from "../../components/footer";
@@ -145,6 +145,20 @@ export const SignupPage = () => {
                         >
                             Sign Up
                         </Button>
+                        <Grid container justifyContent="flex-end">
+                           <Grid item>
+                             <Typography variant="body2" sx={{ mt: 2 }}>
+                             <Link to="/login"
+                             style={{
+                                color: theme.palette.text.primary,
+                                textDecoration: 'underline',
+                                fontWeight: 'bold',
+                              }}>
+                            {"Already have an account? Sign in"}
+                        </Link>
+                        </Typography>
+                    </Grid>
+                </Grid>
                     </Box>
                 </Container>
             </Box>
