@@ -4,7 +4,20 @@ import Footer from "../../components/footer";
 import theme from "../../assets/theme";
 import { GameCard } from "../../components/GameCard";
 import FixedContainer from "../../components/Container";
+import { getToken } from "../../services/authentication";
 
+const user = localStorage.getItem("user");
+
+let user_name = ""; // Added check to ensure 'user' is not 'null', as throws error
+
+    if (user) {
+        try {
+            const userObj = JSON.parse(user);
+            user_name = userObj.name;
+        } catch (error) {
+            console.error("Error parsing user data", error);
+        }
+    }
 
 const gameData = [
     {
@@ -41,11 +54,11 @@ export const GamePage = () => {
                     sx={{ 
                         color: "black",
                         fontFamily: `${theme.typography.retro.fontFamily}`,
-                        marginBottom: 4, // Adds space between the heading and game cards
-                        textAlign: 'center', // Centers the heading text
+                        marginBottom: 4, 
+                        textAlign: 'center', 
                     }}
                 >
-                    Choose a game!
+                    Choose a game, {user_name}!
                 </Typography>
             <FixedContainer 
                 maxWidth={false} 
