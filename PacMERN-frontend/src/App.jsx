@@ -7,19 +7,17 @@ import { SignupPage } from "../src/pages/Signup/SignupPage";
 import { ProfilePage } from "../src/pages/Profile/ProfilePage";
 import "./assets/fonts/fonts.css"
 import { GamePage } from "./pages/GamePage/GamePage";
-import theme from "./assets/theme";
-import { CssBaseline } from "@mui/material";
-import { ThemeProvider } from "@mui/material";
 import "./assets/fonts/fonts.css";
 import MessagePage from "./pages/Message/MessagePage";
 import ChatWindow from "./pages/Message/ChatWindow";
 import ConnectionsGame from "./pages/ConnectionsPage/ConnectionsPage";
+import SnakeGame from "./pages/SnakePage/SnakePage";
 
-// Function to handle the redirection to a static file
-const RedirectToSnakeGame = () => {
-  window.location.href = "/Snake.html";
-  return null;
-};
+// // Function to handle the redirection to a static file
+// const RedirectToSnakeGame = () => {
+//   window.location.href = "/Snake.html";
+//   return null;
+// };
 
 
 const isAuthenticated = () => {
@@ -49,8 +47,8 @@ const router = createBrowserRouter([
     element: <SignupPage />,
   },
   {
-    path: "/snakegame",
-    element: <RedirectToSnakeGame />,
+    path: "/snakepage",
+    element: <SnakeGame />,
   },
   {
     path: "/connections",

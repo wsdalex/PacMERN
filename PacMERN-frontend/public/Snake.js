@@ -1,6 +1,6 @@
 let blockSize = 25;
-let total_row = 17; //total row number
-let total_col = 17; //total column number
+let total_row = 22; //total row number
+let total_col = 22; //total column number
 let board;
 let context;
 
@@ -58,7 +58,8 @@ function update() {
         snakeBody[0] = [snakeX, snakeY];
     }
 
-    context.fillStyle = "white";
+    context.fillStyle = 'black';
+    context.strokeStyle = 'green';
     snakeX += speedX * blockSize; //updating Snake position in X coordinate.
     snakeY += speedY * blockSize;  //updating Snake position in Y coordinate.
     context.fillRect(snakeX, snakeY, blockSize, blockSize);
@@ -73,7 +74,8 @@ function update() {
         
         // Out of bound condition
         gameOver = true;
-        alert("Game Over");
+        if (alert("Game Over")){}
+        else window.location.reload();
     }
 
     for (let i = 0; i < snakeBody.length; i++) {
@@ -81,7 +83,8 @@ function update() {
             
             // Snake eats own body
             gameOver = true;
-            alert("Game Over");
+            if (alert("Game Over")){}
+            else window.location.reload();
         }
     }
 }

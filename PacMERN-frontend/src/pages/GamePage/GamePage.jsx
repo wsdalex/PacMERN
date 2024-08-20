@@ -25,7 +25,7 @@ const gameData = [
         img: "https://tilcode.blog/wp-content/uploads/2019/04/Screen-Shot-2019-04-28-at-17.51.16.png",
         description: "AS SEEN ON NOKIA 3210!",
         colour: theme.palette.yellow.main,
-        path: "/snakegame"
+        path: "/snakepage"
 
     },
     {
