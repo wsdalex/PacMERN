@@ -29,14 +29,31 @@ const getProfile = async (req, res) => {
     const profile = await User.findById(req.params.id); // add .populate when we have things to add to the profile page
     return res.status(200).json(profile);
   } catch (error) {
-    console.log(error)
-    return res.status(401).json({ message: 'Unauthorised' })
+    console.log(error);
+    return res.status(401).json({ message: "Unauthorised" });
   }
-}
+};
+
+const updateRecentlyPlayed = async (req, res) => {
+  try {
+    const recentlyPlayed = req.body.recentlyPlayed;
+    const filter = { _id: req.body.id };
+    const update = { recentlyPlayed: recentlyPlayed };
+    const user = await User.findOneAndUpdate(filter, update);
+    console.log(recentlyPlayed);
+    return res.status(200).json({ message: "Succesfully updated" });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(400)
+      .json({ message: "Failed to update recently played" });
+  }
+};
 
 const UsersController = {
   create: create,
-  getProfile: getProfile
+  getProfile: getProfile,
+  updateRecentlyPlayed: updateRecentlyPlayed,
 };
 
 module.exports = UsersController;
