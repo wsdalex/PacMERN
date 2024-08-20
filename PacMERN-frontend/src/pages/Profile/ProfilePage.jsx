@@ -84,7 +84,7 @@ export const ProfilePage = () => {
                                     border: '3px solid black',
                                     display: 'flex',
                                     alignItems: 'center',
-                                    justifyContent: 'center',
+                                    justifyContent: 'left',
                                     marginRight: '0vw', // Space between the text box and the image
                                 }}
                             >
@@ -94,7 +94,8 @@ export const ProfilePage = () => {
                                         color: "black",
                                         fontFamily: `${theme.typography.retro.fontFamily}`,
                                         textAlign: 'left', 
-                                        fontSize: 15
+                                        fontSize: 15,
+                                        marginLeft: '2vw'
                                     }}
                                 >
                                     Name: {user_name}
