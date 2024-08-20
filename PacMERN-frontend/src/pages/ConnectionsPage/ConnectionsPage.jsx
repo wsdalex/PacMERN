@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Grid, CardContent, Typography, Card, Box } from "@mui/material";
 import theme from "../../assets/theme";
+import GlobalNavBar from "../../components/GlobalNavBar";
+import Footer from "../../components/footer";
 
 const solutions = [
   ["Apple", "Banana", "Cherry", "Peach"],       // Fruits
@@ -88,6 +90,8 @@ export const ConnectionsGame = () => {
   }, [solvedGroups]);
 
   return (
+    <>
+    <GlobalNavBar/>
     <Box sx={{ padding: 4 }}>
       {isGameComplete && (
         <Box sx={{
@@ -150,6 +154,8 @@ export const ConnectionsGame = () => {
         </Box>
       )}
     </Box>
+    <Footer/>
+    </>
   );
 };
 
