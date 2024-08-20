@@ -154,10 +154,21 @@ describe("/users", () => {
         password: "password",
       });
       await user.save();
-      const recentlyUpdated = "Snake";
+      const recentlyPlayed = "Snake";
       const response = await request(app)
-        .put(`/users/${recentlyUpdated}`)
-        .send({ recentlyUpdated: recentlyUpdated, id: user._id });
+        .put(`/users/recentlyPlayed`)
+        .send({ recentlyPlayed: recentlyPlayed, id: user._id });
+      const updatedUser = await User.findById(user._id);
+      expect(response.statusCode).toBe(200);
+      expect(response.body.message).toEqual("Successfully updated");
+      expect(updatedUser.recentlyPlayed).toEqual("Snake");
+    });
+    test("test if error 400 status code", async () => {
+      const response = await request(app)
+        .put(`/users/recentlyPlayed`)
+        .send({ id: "badId" });
+      expect(response.statusCode).toBe(400);
+      expect(response.body.message).toEqual("Failed to update recently played");
     });
   });
 });
