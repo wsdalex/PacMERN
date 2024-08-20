@@ -13,7 +13,7 @@ const SnakeGame = () => {
               fontFamily: theme.typography.retro, 
               textAlign: 'center', 
               mb: 3, 
-              color: theme.palette.text.primary,
+              color: 'black',
             }}
           >
             SNAKE
@@ -23,7 +23,7 @@ const SnakeGame = () => {
           sx={{ 
             width: '100vw', 
             height: 'auto',
-            bgcolor: theme.palette.primary.main, 
+            bgcolor: theme.palette.red.main, 
             display:'center',
             alignItems: 'center',
             justifyContent: 'center',
@@ -60,7 +60,7 @@ const SnakeGame = () => {
           variant="body1"
           sx={{
             fontFamily: theme.typography.retro,
-            color: theme.palette.text.primary,
+            color: 'black',
             textAlign: "centre",
             marginBottom: 4,
           }}
