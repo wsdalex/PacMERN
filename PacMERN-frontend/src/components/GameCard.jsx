@@ -3,13 +3,31 @@ import theme from "../assets/theme";
 import { useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
 import { Link } from "react-router-dom";
+import { updateRecentlyPlayed } from "../services/recentlyPlayed";
 
 
 export const GameCard = (props) => {
+
     const navigate = useNavigate();
-    const handleClick = () => {
+
+    const handleClick = async () => {
+        const user = localStorage.getItem("user")
+        const gameName = props.name
+        let userId;
+        if (user) {
+            try {
+      const userObj = JSON.parse(user);
+      userId = userObj.id
+
+            } catch (error) {
+                console.error("Error parsing user data", error);
+              }
+
+        }
+        await updateRecentlyPlayed(userId, gameName)
         navigate(props.path)
     }
+
     return (
         <>
         <Paper 
@@ -21,7 +39,7 @@ export const GameCard = (props) => {
                             padding: "15px",
                             border: '3px solid black',
                             maxHeight: "auto",
-                            width: "100vw",
+                            minWidth: "20vw",
                             justifyContent: 'center',
                             gap: '10px',
                             boxSizing: 'border-box',
@@ -39,9 +57,10 @@ export const GameCard = (props) => {
                             borderRadius: '0px',       // Optional: Add rounded corners
                             display: 'inline-block',
                             marginBottom: '10px',
-                            fontSize: 'calc(1.5vw + 8px)',  // Responsive font size based on viewport width
+                            width: '17vw',
+                            fontSize: 'calc(1.5vw + 2px)',
+                            fontFamily: `${theme.typography.retro.fontFamily}`,  // Responsive font size based on viewport width
                             lineHeight: '1.2',  // Adjust line-height for better readability
-                            // whiteSpace: 'nowrap', // Prevent text from wrapping
                             overflow: 'hidden',  // Ensure long text doesn't overflow
                             textOverflow: 'ellipsis',  // Add ellipsis to long overflowing text
                         }}>
@@ -66,7 +85,8 @@ export const GameCard = (props) => {
                             padding: '2px',
                             display: 'inline-block',
                             marginBottom: '0px', 
-                            fontSize: 'calc(1vw + 8px)',  // Responsive font size based on viewport width
+                            fontSize: 'calc(1vw + 3px)',
+                            fontFamily: `${theme.typography.retro.fontFamily}`,  // Responsive font size based on viewport width
                             lineHeight: '1.2',  // Adjust line-height for better readability
                             overflowWrap: 'break-word', // Ensure long words break to the next line  // Optional: Shrink to fit the text content
                         }}>

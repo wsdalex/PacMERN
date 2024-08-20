@@ -13,6 +13,7 @@ import { ThemeProvider } from "@mui/material";
 import "./assets/fonts/fonts.css";
 import MessagePage from "./pages/Message/MessagePage";
 import ChatWindow from "./pages/Message/ChatWindow";
+import ConnectionsGame from "./pages/ConnectionsPage/ConnectionsPage";
 
 // Function to handle the redirection to a static file
 const RedirectToSnakeGame = () => {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
   {
     path: "/snakegame",
     element: <RedirectToSnakeGame />,
+  },
+  {
+    path: "/connections",
+    element: <ConnectionsGame/>
   },
   // any protected routes below - profile
   {

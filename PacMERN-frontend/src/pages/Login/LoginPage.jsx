@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Container, Box, TextField, Grid, Button } from "@mui/material";
 import { login } from "../../services/authentication";
-import "./LoginPage.css";
 import GlobalNavBar from "../../components/GlobalNavBar";
 import Footer from "../../components/footer";
 import theme  from "../../assets/theme";
@@ -23,7 +22,7 @@ export const LoginPage = () => {
             localStorage.setItem("user", JSON.stringify(user));
             localStorage.setItem("token", token);
             console.log("logged in user's token -> " + token);
-            navigate("/profile");
+            navigate("/games");
         } catch (err) {
             console.error(err);
             setErrors(err.message);
@@ -87,42 +86,11 @@ export const LoginPage = () => {
   required
   fullWidth
   id="email"
-  label="EMAIL ADDRESS"
+  label="Email"
   name="email"
   autoComplete="email"
   autoFocus
   onChange={handleEmailChange}
-  InputLabelProps={{
-    sx: {
-      bgcolor: theme.palette.background.default,
-      border: '3px solid black', // Match border thickness with the button
-      borderRadius: 0,
-      color: theme.palette.text.primary, 
-      paddingX: 1, // Add some padding to match the button's feel
-      '&.Mui-focused': {
-        color: theme.palette.text.primary,
-      },
-    },
-    shrink: true,
-  }}
-  InputProps={{
-    sx: {
-      bgcolor: theme.palette.background.default, // Match background color with the button
-      borderRadius: 0, // Match the button's border radius
-      border: '3px solid black', // Match border thickness with the button
-      boxShadow: 3, // Add shadow to match the button's shadow
-      color: theme.palette.text.primary, 
-      '& .MuiOutlinedInput-notchedOutline': {
-        border: 'none', // Remove the inner fieldset border
-      },
-      '&:hover .MuiOutlinedInput-notchedOutline': {
-        border: 'none', // Remove the hover border
-      },
-      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-        border: 'none', // Remove the focus border
-      },
-    },
-  }}
 />
 {errors && <p className='error-message'>{errors.password}</p>}
 
@@ -132,42 +100,11 @@ export const LoginPage = () => {
   required
   fullWidth
   name="password"
-  label="PASSWORD"
+  label="Password"
   type="password"
   id="password"
   autoComplete="current-password"
   onChange={handlePasswordChange}
-  InputLabelProps={{
-    sx: {
-      bgcolor: theme.palette.background.default,
-      border: '3px solid black', // Match border thickness with the button
-      borderRadius: 0,
-      color: theme.palette.text.primary, 
-      paddingX: 1, // Add some padding to match the button's feel
-      '&.Mui-focused': {
-        color: theme.palette.text.primary,
-      },
-    },
-    shrink: true,
-  }}
-  InputProps={{
-    sx: {
-      bgcolor: theme.palette.background.default, // Match background color with the button
-      borderRadius: 0, // Match the button's border radius
-      border: '3px solid black', // Match border thickness with the button
-      boxShadow: 3, // Add shadow to match the button's shadow
-      color: theme.palette.text.primary, 
-      '& .MuiOutlinedInput-notchedOutline': {
-        border: 'none', // Remove the inner fieldset border
-      },
-      '&:hover .MuiOutlinedInput-notchedOutline': {
-        border: 'none', // Remove the hover border
-      },
-      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-        border: 'none', // Remove the focus border
-      },
-    },
-  }}
 />
 {errors && <p className='error-message'>{errors.password}</p>}
 
@@ -193,7 +130,7 @@ export const LoginPage = () => {
                     <Link 
                       to='/signup' 
                       style={{
-                        color: theme.palette.primary.main,
+                        color: theme.palette.text.primary,
                         textDecoration: 'underline',
                         fontWeight: 'bold',
                       }}

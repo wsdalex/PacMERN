@@ -16,7 +16,8 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import PeopleIcon from '@mui/icons-material/People';
-import theme from '../assets/theme';
+import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
+import { useNavigate } from 'react-router-dom';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -62,22 +63,47 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function GlobalNavBar() {
     const [anchorEl, setAnchorEl] = React.useState(null);
-    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
     const isMenuOpen = Boolean(anchorEl);
-    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+    const [anchorMenuIconEl, setAnchorMenuIconEl] = React.useState(null);
+    const isMenuIconOpen = Boolean(anchorMenuIconEl);
+
+const handleMenuIconClick = (event) => {
+    setAnchorMenuIconEl(event.currentTarget);
+};
+
+const handleMenuIconClose = () => {
+    setAnchorMenuIconEl(null);
+};
+
+
+    const navigate = useNavigate();
 
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
     };
 
-    const handleMobileMenuClose = () => {
-        setMobileMoreAnchorEl(null);
+    const handleProfileSubmit = () => {
+        navigate("/profile");
+        handleMenuClose();
+    };
+
+    const handleGamePageSubmit = () => {
+        navigate("/games");
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        navigate("/login");
+        handleMenuClose();
     };
 
     const handleMenuClose = () => {
         setAnchorEl(null);
-        handleMobileMenuClose();
+    };
+
+    const handleMobileMenuClose = () => {
+        setMobileMoreAnchorEl(null);
     };
 
     const handleMobileMenuOpen = (event) => {
@@ -100,29 +126,54 @@ export default function GlobalNavBar() {
             }}
             open={isMenuOpen}
             onClose={handleMenuClose}
+            sx={{
+                '& .MuiPaper-root': {
+                    backgroundColor: 'white',
+                    color: '#000099',
+                    border: "3px solid black",
+                    boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)', // Optional: add a shadow for better visibility
+                },
+            }}
         >
-            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+            <MenuItem onClick={handleProfileSubmit}>Profile</MenuItem>
+            <MenuItem onClick={handleLogout}>Log Out</MenuItem>
+        </Menu>
+    );
+
+    const renderMenuIconDropdown = (
+        <Menu
+            anchorEl={anchorMenuIconEl}
+            anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+            }}
+            id="menu-icon-dropdown"
+            keepMounted
+            transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+            }}
+            open={isMenuIconOpen}
+            onClose={handleMenuIconClose}
+            sx={{
+                '& .MuiPaper-root': {
+                    backgroundColor: 'white',
+                    color: '#000099',
+                    border: "3px solid black",
+                    boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
+                },
+            }}
+        >
+            <MenuItem onClick={() => { handleGamePageSubmit(); handleMenuIconClose(); }}>Games</MenuItem>
+            <MenuItem onClick={handleMenuIconClose}>Messages</MenuItem>
+            <MenuItem onClick={handleMenuIconClose}>Friends</MenuItem>
+            <MenuItem onClick={() => { handleProfileSubmit(); handleMenuIconClose(); }}>Profile</MenuItem>
         </Menu>
     );
 
     const mobileMenuId = 'primary-search-account-menu-mobile';
     const renderMobileMenu = (
-        <Menu
-            anchorEl={mobileMoreAnchorEl}
-            anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
-            id={mobileMenuId}
-            keepMounted
-            transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
-            open={isMobileMenuOpen}
-            onClose={handleMobileMenuClose}
-        >
+        <Menu>
             <MenuItem>
                 <IconButton size="large" aria-label="show 4 new mails" color="#000099">
                     <Badge badgeContent={4} color="error">
@@ -164,25 +215,28 @@ export default function GlobalNavBar() {
                 position="absolute"
                 sx={{
                     width: '100%',
-                    height: 60, // Set a consistent height
+                    height: 60,
                     padding: '0 10px',
-                    backgroundColor: 'WHITE',
+                    backgroundColor: 'white',
                     boxShadow: 'none',
                     borderBottom: '3px solid black',
-                    boxSizing: 'border-box', // Ensure border and padding are included in the height
-                
+                    boxSizing: 'border-box',
                 }}
             >
                 <Toolbar>
-                    <IconButton
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        aria-label="open drawer"
-                        sx={{ mr: 2, color: "black" }}
+                <IconButton
+                    size="large"
+                    edge="start"
+                    color="inherit"
+                    aria-label="open drawer"
+                    sx={{ mr: 2, color: "black" }}
+                    onClick={handleMenuIconClick}
                     >
-                        <MenuIcon sx={{ fontSize: 60 }} />
-                    </IconButton>
+                <MenuIcon sx={{ fontSize: 60 }} />
+                </IconButton>
+                {renderMenuIconDropdown}
+
+
                     <Typography
                         variant="h6"
                         noWrap
@@ -202,8 +256,21 @@ export default function GlobalNavBar() {
                             inputProps={{ 'aria-label': 'search' }}
                         />
                     </Search>
+
                     <Box sx={{ flexGrow: 1 }} />
                     <Box sx={{ display: { xs: 'none', md: 'flex', color: "#069330" } }}>
+                        
+                        <IconButton
+                            size="large"
+                            edge="end"
+                            aria-label="game page"
+                            aria-haspopup="true"
+                            onClick={handleGamePageSubmit}
+                            sx={{ border: "2px solid black", color: 'white', backgroundColor: "#000099", ml: 1 , width: 41, height: 41, borderRadius: '50%', marginRight: '16px'}} 
+                        >
+                            <SportsEsportsIcon />
+                        </IconButton>
+
                         <IconButton
                             size="large"
                             aria-label="show 4 new mails"
@@ -213,6 +280,7 @@ export default function GlobalNavBar() {
                                 <MailIcon />
                             </Badge>
                         </IconButton>
+
                         <IconButton
                             size="large"
                             aria-label="friends"
@@ -220,11 +288,11 @@ export default function GlobalNavBar() {
                         >
                             <PeopleIcon />
                         </IconButton>
+
                         <IconButton
                             size="large"
                             edge="end"
                             aria-label="account of current user"
-                            aria-controls={menuId}
                             aria-haspopup="true"
                             onClick={handleProfileMenuOpen}
                             sx={{ border: "2px solid black", color: 'white', backgroundColor: "#ff2d1e", ml: 1 , width: 41, height: 41, borderRadius: '50%'}} 
