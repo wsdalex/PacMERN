@@ -2,6 +2,8 @@ import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAllUsers } from "../../services/user";
 import { getToken } from "../../services/authentication";
+import { Box, Button, Modal, Typography } from "@mui/material";
+import ChatWindow from "./ChatWindow"; // Import the ChatWindow component
 
 const MessagePage = () => {
     const [searchQuery, setSearchQuery] = useState("");
@@ -9,6 +11,8 @@ const MessagePage = () => {
     const [filteredUsers, setFilteredUsers] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [open, setOpen] = useState(false); // State to manage modal open/close
+    const [selectedUserId, setSelectedUserId] = useState(null); // State to manage
     const navigate = useNavigate();
 
     const fetchAllUsers = useCallback(async () => {
@@ -49,8 +53,15 @@ const MessagePage = () => {
     }, [filterUsers]);
 
     const handleUserClick = (userId) => {
-        navigate(`/message/${userId}`);
+        setSelectedUserId(userId); // Set the selected user ID
+        setOpen(true); // Open the modal
     };
+
+    const handleClose = () => {
+        setOpen(false); // Close the modal
+    };
+
+        
 
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>{error}</div>;
@@ -118,6 +129,28 @@ const MessagePage = () => {
                     ))}
                 </ul>
             )}
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="chat-window-title"
+                aria-describedby="chat-window-description"
+            >
+                <Box
+                    sx={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        width: 400,
+                        bgcolor: 'background.paper',
+                        boxShadow: 24,
+                        p: 4,
+                        borderRadius: 2,
+                    }}
+                >
+                    {selectedUserId && <ChatWindow userId={selectedUserId} />} {/* Pass the selected user ID */}
+                </Box>
+            </Modal>
         </div>
     );
 };
