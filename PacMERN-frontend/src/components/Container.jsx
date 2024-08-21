@@ -11,7 +11,7 @@ export default function FixedContainer({ children }) {
         <Box 
        sx={{ 
         width: '100vw', 
-        height: "auto",
+        height: "10vw",
         bgcolor: theme.palette.primary.main, 
         marginX: 'calc(50% - 50vw)', 
         textAlign: "center",
@@ -26,7 +26,7 @@ export default function FixedContainer({ children }) {
         sx={{ 
             display: 'flex', 
             justifyContent: 'space-evenly', 
-            alignItems: 'center', 
+            alignItems: 'center',
             flexDirection: {xs: "column", md: "row"}
          }}>
         {children}

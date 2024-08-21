@@ -38,7 +38,8 @@ export const GameCard = (props) => {
                             textAlign: 'center',
                             padding: "15px",
                             border: '3px solid black',
-                            maxHeight: "auto",
+                            maxHeight: "30vw",
+                            maxWidth: "22vw",
                             minWidth: "20vw",
                             justifyContent: 'center',
                             gap: '10px',
@@ -71,11 +72,13 @@ export const GameCard = (props) => {
                             style={{ 
                                 paddingTop: '5px',
                                 padding: '0px',
+                                minWidth: '15vw',
                                 maxWidth: '100%', // Ensures the image fits within the container width
                                 height: '130px', // Maintains aspect ratio
                                 maxHeight: '200px',
                                 borderRadius: '15px',
-                                position: 'static'  // Optional: Limit the height to prevent it from being too tall
+                                position: 'static',
+                                border: "3px solid black"  // Optional: Limit the height to prevent it from being too tall
                             }}
                         />
                         <Typography

@@ -77,8 +77,8 @@ export const ProfilePage = () => {
                             justifyContent: 'center',
                             alignItems: 'center',
                             minHeight: '50vh',
-                            marginTop: '2vw',
-                            marginBottom: '1vw',
+                            marginTop: '-1vw',
+                            marginBottom: '-3vw',
                             padding: '3vw'
                         }}
                     >
@@ -200,7 +200,7 @@ export const ProfilePage = () => {
                                                 marginRight: '0.5rem',  // Spacing between the image and text
                                             }}
                                         />
-                                        {profile.name} played <span style={{color: "#000099"}}>{item.game}</span> <span style={{ fontSize: 12 }}>- {moment(item.createdAt).fromNow()}</span>
+                                        {profile.name} played <span style={{color: "#069330"}}>{item.game}</span> <span style={{ fontSize: 12 }}>- {moment(item.createdAt).fromNow()}</span>
                                     </Typography>
                                 ))
                             ) : (

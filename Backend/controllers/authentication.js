@@ -16,7 +16,7 @@ const createToken = async (req, res) => {
         const isMatch = await user.comparePassword(password);
         if (!isMatch) {
             console.log("Auth Error: Passwords do not match");
-            return res.status(401).json({ message: "Password incorrect" });
+            return res.status(401).json({ message: "Password Incorrect" });
         }
 
         const token = generateToken(user.id);
