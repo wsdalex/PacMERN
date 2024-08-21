@@ -12,8 +12,8 @@ export const ProfilePage = () => {
     const navigate = useNavigate();
     const user = localStorage.getItem("user");
     let userId = null; 
-    let user_name = ""; 
-    let profile_image = "";
+    // let user_name = ""; 
+    // let profile_image = "";
 
     if (user) {
         try {
@@ -80,7 +80,7 @@ export const ProfilePage = () => {
                                 }}
                             >
                                 <img 
-                                    src={profile_image} 
+                                    src={profile.profileImage} 
                                     alt="Profile" 
                                     style={{
                                         width: '100%',
