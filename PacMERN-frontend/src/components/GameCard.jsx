@@ -57,7 +57,7 @@ export const GameCard = (props) => {
                             borderRadius: '0px',       // Optional: Add rounded corners
                             display: 'inline-block',
                             marginBottom: '10px',
-                            width: '17vw',
+                            width: '18vw',
                             fontSize: 'calc(1.5vw + 2px)',
                             fontFamily: `${theme.typography.retro.fontFamily}`,  // Responsive font size based on viewport width
                             lineHeight: '1.2',  // Adjust line-height for better readability
