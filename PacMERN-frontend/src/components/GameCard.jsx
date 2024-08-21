@@ -39,7 +39,7 @@ export const GameCard = (props) => {
                             padding: "15px",
                             border: '3px solid black',
                             maxHeight: "auto",
-                            minWidth: "22vw",
+                            minWidth: "20vw",
                             justifyContent: 'center',
                             gap: '10px',
                             boxSizing: 'border-box',

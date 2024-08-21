@@ -22,23 +22,10 @@ const CustomButton = styled(Button)(({ theme }) => ({
         backgroundColor: '#D3D3D3',
         color: '#000099'
     },
-}));import FixedContainer from "../../components/Container";
+}));
 
 export const HomePage = () => {
     return (
-        <div className='home'>
-            <GlobalNavBar />
-                <h1>WELCOME!</h1>
-            <FixedContainer>
-                <Link to='/signup' id='button' className='btn btn-primary'>
-                    SIGN UP
-                </Link>
-                <br />
-                <Link to='/login' id='button' className='btn btn-primary'>
-                    LOG IN
-                </Link>
-            </FixedContainer>
-        </div>
         <>
             <div className='home'>
                 <GlobalNavBar />

@@ -65,12 +65,12 @@ export const GamePage = () => {
                 disableGutters 
                 sx={{
                     backgroundColor: `${theme.palette.primary.main}`,
-                    width: '100%', // Ensures the container fills the screen width
+                    width: '100%',
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
                     paddingY: 4,
-                    flexDirection: 'column', // Adds padding at the top and bottom
+                    flexDirection: 'column', 
                 }}
             >
                 <Box 
@@ -79,8 +79,8 @@ export const GamePage = () => {
                         flexDirection: "row", 
                         justifyContent: "space-between", 
                         gap: 4,
-                        width: '80%', // Adjust this value to occupy more or less width
-                        padding: 4, // Optional: add padding for better spacing
+                        width: '100%', // Adjust this value to occupy more or less width
+                        padding: 1, // Optional: add padding for better spacing
                     }}
                 >
                     {gameData.map(game => (
