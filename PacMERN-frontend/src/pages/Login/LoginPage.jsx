@@ -86,13 +86,13 @@ export const LoginPage = () => {
   required
   fullWidth
   id="email"
-  label="Email"
-  name="email"
+  label="EMAIL"
+  name="mail"
   autoComplete="email"
   autoFocus
   onChange={handleEmailChange}
 />
-{errors && <p className='error-message'>{errors.password}</p>}
+{/* {errors && <p className='error-message'>{errors.password}</p>} */}
 
 <TextField
   variant="outlined"
@@ -100,13 +100,14 @@ export const LoginPage = () => {
   required
   fullWidth
   name="password"
-  label="Password"
+  label="PASSWORD"
   type="password"
   id="password"
   autoComplete="current-password"
   onChange={handlePasswordChange}
 />
-{errors && <p className='error-message'>{errors.password}</p>}
+
+{/* {errors && <p className='error-message'>{errors.password}</p>} */}
 
 <Button
   type='submit'
@@ -135,14 +136,14 @@ export const LoginPage = () => {
                         fontWeight: 'bold',
                       }}
                     >
-                      {"Don't have an account? Sign up"}
+                      {"DON'T HAVE AN ACCOUNT? SIGN UP!"}
                     </Link>
                   </Typography>
                 </Grid>
               </Grid>
             </Box>
-            {errors && <p className='error-message'>{errors}</p>}
           </Container>
+            {errors && <p className='error-message' style={{color: "red", fontFamily: theme.typography.fontFamily}}>{errors}</p>}
         </Box>
         <Footer/>
       </>

@@ -37,7 +37,7 @@ const gameData = [
 
     },
     {
-        name: "Connect 16 divided by 4",
+        name: "CONNECT 4",
         img: "https://www.charlieintel.com/cdn-cgi/image/width=3840,quality=75,format=auto/https://editors.charlieintel.com/wp-content/uploads/2023/05/29/diablo-4-hardcore-mode-server-discconnect-1024x576.jpg",
         description: "No friends? You are not AUTHORIZED to play this game!",
         colour: theme.palette.red.main,
@@ -66,10 +66,10 @@ export const GamePage = () => {
                 sx={{
                     backgroundColor: `${theme.palette.primary.main}`,
                     width: '100%',
+                    maxHeight: '2vw',
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    paddingY: 4,
                     flexDirection: 'column', 
                 }}
             >

@@ -90,7 +90,7 @@ export const SignupPage = () => {
                         <TextField
                             fullWidth
                             margin="normal"
-                            label="Name"
+                            label="NAME"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             required
@@ -98,7 +98,7 @@ export const SignupPage = () => {
                         <TextField
                             fullWidth
                             margin="normal"
-                            label="Email"
+                            label="EMAIL"
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
@@ -107,7 +107,7 @@ export const SignupPage = () => {
                         <TextField
                             fullWidth
                             margin="normal"
-                            label="Password"
+                            label="PASSWORD"
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
@@ -116,7 +116,7 @@ export const SignupPage = () => {
                         <TextField
                             fullWidth
                             margin="normal"
-                            label="Confirm Password"
+                            label="CONFIRM PASSWORD"
                             type="password"
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
@@ -125,7 +125,7 @@ export const SignupPage = () => {
                         <TextField
                             fullWidth
                             margin="normal"
-                            label="Profile Image URL (optional)"
+                            label="PROFILE IMAGE URL (optional)"
                             value={profileImage}
                             onChange={(e) => setProfileImage(e.target.value)}
                         />
@@ -141,11 +141,12 @@ export const SignupPage = () => {
                                 bgcolor: theme.palette.background.default, 
                                 boxShadow: 3,
                                 color: theme.palette.text.primary, 
+                                
                             }}
                         >
                             Sign Up
                         </Button>
-                        <Grid container justifyContent="flex-end">
+                        <Grid container justifyContent="center">
                            <Grid item>
                              <Typography variant="body2" sx={{ mt: 2 }}>
                              <Link to="/login"
@@ -154,7 +155,7 @@ export const SignupPage = () => {
                                 textDecoration: 'underline',
                                 fontWeight: 'bold',
                               }}>
-                            {"Already have an account? Sign in"}
+                                {"ALREADY HAVE AN ACCOUNT? SIGN IN!"}
                         </Link>
                         </Typography>
                     </Grid>

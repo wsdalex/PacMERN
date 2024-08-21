@@ -93,6 +93,10 @@ const handleMenuIconClose = () => {
         navigate("/games");
     };
 
+    const handleFriendsPageSubmit = () => {
+        navigate("/friends");
+    };
+
     const handleLogout = () => {
         localStorage.removeItem('token');
         navigate("/login");
@@ -291,6 +295,7 @@ const handleMenuIconClose = () => {
                         <IconButton
                             size="large"
                             aria-label="friends"
+                            onClick={handleFriendsPageSubmit}
                             sx={{ border: "2px solid black", color: 'white', backgroundColor: "#069330", mx: 1 , width: 41, height: 41, borderRadius: '50%'}} 
                         >
                             <PeopleIcon />
