@@ -17,7 +17,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import PeopleIcon from '@mui/icons-material/People';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import M64 from '../assets/images/M64Logo.png';
 
 const Search = styled('div')(({ theme }) => ({
@@ -276,15 +276,17 @@ const handleMenuIconClose = () => {
                             <SportsEsportsIcon />
                         </IconButton>
 
-                        <IconButton
-                            size="large"
-                            aria-label="show 4 new mails"
-                            sx={{ border: "2px solid black", color: 'white', backgroundColor: "#FFC001", mr: 1 , width: 41, height: 41, borderRadius: '50%'}} 
-                        >
-                            <Badge badgeContent={4} color="error">
-                                <MailIcon />
-                            </Badge>
-                        </IconButton>
+                        <Link to="/messages">
+                            <IconButton
+                                size="large"
+                                aria-label="show 4 new mails"
+                                sx={{ border: "2px solid black", color: 'white', backgroundColor: "#FFC001", mr: 1 , width: 41, height: 41, borderRadius: '50%'}} 
+                            >
+                                <Badge badgeContent={4} color="error">
+                                    <MailIcon />
+                                </Badge>
+                            </IconButton>
+                        </Link>
 
                         <IconButton
                             size="large"
