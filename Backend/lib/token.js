@@ -13,7 +13,7 @@ const generateToken = (user_id) => {
       {
         user_id: user_id,
         iat: Math.floor(Date.now() / 1000),
-        exp: Math.floor(Date.now() / 1000) + 10 * 60,
+        exp: Math.floor(Date.now() / 1000) + 1000 * 60, // changed to 1000 minutes
       },
       secret
     );

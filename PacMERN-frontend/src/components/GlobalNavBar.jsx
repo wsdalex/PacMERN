@@ -17,7 +17,8 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import PeopleIcon from '@mui/icons-material/People';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import M64 from '../assets/images/M64Logo.png';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -229,10 +230,14 @@ const handleMenuIconClose = () => {
                     edge="start"
                     color="inherit"
                     aria-label="open drawer"
-                    sx={{ mr: 2, color: "black" }}
+                    sx={{ mr: 2, mb: 1}}
                     onClick={handleMenuIconClick}
                     >
-                <MenuIcon sx={{ fontSize: 60 }} />
+                <img
+                src={M64} // Replace with the URL or path to your image
+                alt="M64"
+                style={{ width: 60, height: 60 }} // Adjust the size as needed
+                />
                 </IconButton>
                 {renderMenuIconDropdown}
 
@@ -271,15 +276,17 @@ const handleMenuIconClose = () => {
                             <SportsEsportsIcon />
                         </IconButton>
 
-                        <IconButton
-                            size="large"
-                            aria-label="show 4 new mails"
-                            sx={{ border: "2px solid black", color: 'white', backgroundColor: "#FFC001", mr: 1 , width: 41, height: 41, borderRadius: '50%'}} 
-                        >
-                            <Badge badgeContent={4} color="error">
-                                <MailIcon />
-                            </Badge>
-                        </IconButton>
+                        <Link to="/messages">
+                            <IconButton
+                                size="large"
+                                aria-label="show 4 new mails"
+                                sx={{ border: "2px solid black", color: 'white', backgroundColor: "#FFC001", mr: 1 , width: 41, height: 41, borderRadius: '50%'}} 
+                            >
+                                <Badge badgeContent={4} color="error">
+                                    <MailIcon />
+                                </Badge>
+                            </IconButton>
+                        </Link>
 
                         <IconButton
                             size="large"
