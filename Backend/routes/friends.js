@@ -9,5 +9,6 @@ router.post("/decline", FriendsController.declineFriendRequest);
 router.delete("/remove", FriendsController.removeFriend);
 router.get("/:id", FriendsController.getFriends);
 router.get("/requests/:id", FriendsController.getFriendRequests);
+router.get("/requestsSent/:id", FriendsController.getFriendRequestsSent);
 
 module.exports = router;

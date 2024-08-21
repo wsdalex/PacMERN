@@ -12,7 +12,9 @@ import MessagePage from "./pages/Message/MessagePage";
 import ChatWindow from "./pages/Message/ChatWindow";
 import ConnectionsGame from "./pages/ConnectionsPage/ConnectionsPage";
 import SnakeGame from "./pages/SnakePage/SnakePage";
+import { FriendsPage } from "./pages/FriendsPage/FriendsPage";
 import Connect4 from "./pages/Connect4Page/Connect4Page";
+
 
 // // Function to handle the redirection to a static file
 // const RedirectToSnakeGame = () => {
@@ -78,6 +80,10 @@ const router = createBrowserRouter([
       {
         path: "/message/:userId",
         element: <ChatWindow />
+      },
+      {
+        path: "/friends",
+        element:<FriendsPage/>
       }
     ]
   },
