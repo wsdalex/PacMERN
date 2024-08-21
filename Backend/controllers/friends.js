@@ -98,6 +98,7 @@ const getFriends = async (req, res) => {
     );
 
     res.status(200).json({ friends: user.friends });
+    console.log(user.friends);
   } catch (error) {
     res.status(400).json({
       message: "Something went wrong with retrieving the friends list",
@@ -124,6 +125,23 @@ const getFriendRequests = async (req, res) => {
   }
 };
 
+const getFriendRequestsSent = async (req, res) => {
+  const userId = req.params.id;
+
+  try {
+    const user = await User.findById(userId).populate(
+      "friendRequestsSent",
+      "name profileImage"
+    );
+
+    res.status(200).json({ friendRequestsSent: user.friendRequestsSent });
+  } catch (error) {
+    res.status(400).json({
+      message: "Something went wrong with retrieving the friend request list",
+    });
+  }
+};
+
 const FriendsController = {
   sendFriendRequest: sendFriendRequest,
   acceptFriendRequest: acceptFriendRequest,
@@ -131,6 +149,7 @@ const FriendsController = {
   removeFriend: removeFriend,
   getFriends: getFriends,
   getFriendRequests: getFriendRequests,
+  getFriendRequestsSent: getFriendRequestsSent,
 };
 
 module.exports = FriendsController;
