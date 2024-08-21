@@ -37,11 +37,11 @@ const gameData = [
 
     },
     {
-        name: "NEXT GAME",
-        img: "https://m.media-amazon.com/images/I/41fO8fe8WdL.png",
-        description: "THIS IS THE DESCRIPTION",
+        name: "Connect 16 divided by 4",
+        img: "https://www.charlieintel.com/cdn-cgi/image/width=3840,quality=75,format=auto/https://editors.charlieintel.com/wp-content/uploads/2023/05/29/diablo-4-hardcore-mode-server-discconnect-1024x576.jpg",
+        description: "No friends? You are not AUTHORIZED to play this game!",
         colour: theme.palette.red.main,
-        path: "/snakegame"
+        path: "/connect4"
 
     },
 ]

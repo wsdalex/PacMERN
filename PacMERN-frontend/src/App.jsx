@@ -12,6 +12,7 @@ import MessagePage from "./pages/Message/MessagePage";
 import ChatWindow from "./pages/Message/ChatWindow";
 import ConnectionsGame from "./pages/ConnectionsPage/ConnectionsPage";
 import SnakeGame from "./pages/SnakePage/SnakePage";
+import Connect4 from "./pages/Connect4Page/Connect4Page";
 
 // // Function to handle the redirection to a static file
 // const RedirectToSnakeGame = () => {
@@ -47,12 +48,20 @@ const router = createBrowserRouter([
     element: <SignupPage />,
   },
   {
+    path: "/games",
+    element: <GamePage />
+  },
+  {
     path: "/snakepage",
     element: <SnakeGame />,
   },
   {
     path: "/connections",
     element: <ConnectionsGame/>
+  },
+  {
+    path: "/connect4",
+    element: <Connect4 />
   },
   // any protected routes below - profile
   {
@@ -61,10 +70,6 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <ProfilePage />,
-      },
-      {
-        path: "/games",
-        element: <GamePage />
       },
       {
         path: "/messages",
