@@ -1,6 +1,8 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getUserWithMessagesAndConversations, sendMessage } from "../../services/message";
+import { TextField } from "@mui/material";
+import theme from '../../assets/theme';
 
 const ChatWindow = () => {
     const { userId } = useParams();
@@ -75,8 +77,9 @@ const ChatWindow = () => {
                 marginBottom: "1rem",
                 height: "400px",
                 overflowY: "auto",
-                border: "1px solid #ccc",
-                borderRadius: "4px",
+                border: '2px solid black',
+                // backgroundColor:'#8c9c60',
+                borderRadius: "30px",
                 padding: "0.5rem",
             }}>
                 {!currentConversation || currentConversation.messages.length === 0 ? (
@@ -106,28 +109,40 @@ const ChatWindow = () => {
                 )}
                 <div ref={messagesEndRef} />
             </div>
-            <form onSubmit={handleSendMessage} style={{ display: "flex" }}>
-                <input
-                    type='text'
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    placeholder='Type your message...'
-                    style={{
-                        flexGrow: 1,
-                        marginRight: "0.5rem",
-                        padding: "0.5rem",
-                        border: "1px solid #ccc",
-                        borderRadius: "4px",
-                    }}
-                />
+            <form onSubmit={handleSendMessage} style={{ display: "flex" , margin: '0rem',}}>
+            <TextField
+                variant="outlined"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                placeholder='Type your message...'
+                fullWidth
+                sx={{
+                    flexGrow: 1,
+                    marginRight: '0.5rem',
+                    '& .MuiOutlinedInput-root': {
+                        padding: '0.5rem',
+                        borderRadius: '30px',
+                        border: '2px solid black',
+                        '& fieldset': {
+                            borderColor: 'black',
+                        },
+                    },
+                    '& .MuiInputBase-input': {
+                        fontFamily: theme.typography.retro,
+                        fontSize: '10px', 
+                        color: 'black',
+                    },
+                }}
+            />
                 <button
                     type='submit'
                     style={{
-                        padding: "0.5rem 1rem",
-                        background: "#007bff",
+                        
+                        padding: "1rem 1rem",
+                        background: "blue",
                         color: "white",
                         border: "none",
-                        borderRadius: "4px",
+                        borderRadius: "90px",
                         cursor: "pointer",
                     }}
                 >
@@ -137,5 +152,6 @@ const ChatWindow = () => {
         </div>
     );
 };
+
 
 export default ChatWindow;
