@@ -118,8 +118,14 @@ export const LoginPage = () => {
     mb: 2,
     border: '3px solid black',
     borderRadius: 0,
+    fontSize: 20,
     bgcolor: theme.palette.background.default, 
-    boxShadow: 3,
+    boxShadow: '-10px 8px 12px rgba(0, 0, 0, 0.2)',
+    '&:hover': {
+        backgroundColor: '#D3D3D3',
+        border: '3px solid black',
+        color: '#000099'
+    },
     color: theme.palette.text.primary, 
   }}
 >
