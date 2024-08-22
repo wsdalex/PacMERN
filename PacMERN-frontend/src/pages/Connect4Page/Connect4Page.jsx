@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Box, Button, TextField, Typography, Container } from "@mui/material";
 import "./Connect4Page.css";
 import GlobalNavBar from "../../components/GlobalNavBar";
+import Footer from "../../components/footer";
 
 const PlayerNameForm = ({ onSubmit }) => {
     const [player1Name, setPlayer1Name] = useState("");
@@ -252,6 +253,7 @@ const Connect4 = () => {
                 <p id='endofgame'>{endOfGame}</p>
                 <button onClick={restartGame}>Restart</button>
             </div>
+            <Footer/>
         </div>
     );
 };
