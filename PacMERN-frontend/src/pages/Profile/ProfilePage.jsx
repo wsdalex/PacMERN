@@ -7,7 +7,7 @@ import theme from "../../assets/theme";
 import { useEffect, useState } from "react";
 import { getProfile } from "../../services/profile";
 import moment from "moment";
-import controllerIcon from "../../assets/images/controller-icon.png"
+import controllerIcon from "../../../public/images/controllericon.png"
 
 
 
