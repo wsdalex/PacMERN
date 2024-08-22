@@ -172,7 +172,7 @@ const MessagePage = () => {
                                         borderRadius: '0px',
                                         fontFamily: theme.typography.retro,
                                         fontSize: 15,  
-                                        color: "#D3D3D3",
+                                        color: "#6E6E6E",
                                     
                                     }}
                                 >
