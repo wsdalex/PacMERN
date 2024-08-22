@@ -286,7 +286,7 @@ const handleMenuIconClose = () => {
                                 aria-label="show 4 new mails"
                                 sx={{ border: "2px solid black", color: 'white', backgroundColor: "#FFC001", mr: 1 , width: 41, height: 41, borderRadius: '50%'}} 
                             >
-                                <Badge badgeContent={4} color="error">
+                                <Badge  color="error">
                                     <MailIcon />
                                 </Badge>
                             </IconButton>
