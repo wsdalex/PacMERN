@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAllUsers } from "../../services/user";
 import { getToken } from "../../services/authentication";
+import { getUserWithMessagesAndConversations } from "../../services/message";
 import { Dialog, Box, Button, Container, Typography, TextField } from "@mui/material";
-import ChatWindow from "./ChatWindow"; // Import the ChatWindow component
-import  GlobalNavBar  from "../../components/GlobalNavBar";
-import  Footer  from "../../components/footer";
+import ChatWindow from "./ChatWindow";
+import GlobalNavBar from "../../components/GlobalNavBar";
+import Footer from "../../components/footer";
 import FixedContainer from "../../components/Container";
 import theme from '../../assets/theme';
 
@@ -15,7 +16,8 @@ const MessagePage = () => {
     const [filteredUsers, setFilteredUsers] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [openChats, setOpenChats] = useState([]); // Array to manage open chat windows
+    const [openChats, setOpenChats] = useState([]);
+    const [currentUserId, setCurrentUserId] = useState(null);
     const navigate = useNavigate();
 
     const fetchAllUsers = useCallback(async () => {
@@ -25,9 +27,15 @@ const MessagePage = () => {
             if (!token) {
                 throw new Error("No authentication token found");
             }
+            
+            // Fetch current user data
+            const userData = await getUserWithMessagesAndConversations();
+            setCurrentUserId(userData.user._id);
+
             const users = await getAllUsers(token);
-            setAllUsers(users);
-            setFilteredUsers(users);
+            const otherUsers = users.filter(user => user._id !== userData.user._id);
+            setAllUsers(otherUsers);
+            setFilteredUsers(otherUsers);
             setError(null);
         } catch (error) {
             console.error("Error fetching users:", error);
@@ -47,27 +55,24 @@ const MessagePage = () => {
     const filterUsers = useCallback(() => {
         const lowercaseQuery = searchQuery.toLowerCase();
         return allUsers.filter((user) =>
-            user.name.toLowerCase().includes(lowercaseQuery)
+            user._id !== currentUserId && user.name.toLowerCase().includes(lowercaseQuery)
         );
-    }, [searchQuery, allUsers]);
+    }, [searchQuery, allUsers, currentUserId]);
 
     useEffect(() => {
         setFilteredUsers(filterUsers());
     }, [filterUsers]);
 
     const handleUserClick = (userId) => {
-        // Add the selected user to the openChats array
         setOpenChats((prev) => [...prev, userId]);
     };
 
     const handleCloseChat = (userId) => {
-        // Remove the user from the openChats array
         setOpenChats((prev) => prev.filter((id) => id !== userId));
     };
 
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>{error}</div>;
-
 
     return (
         <Container className='messages-container' sx={{ display: 'flex', flexDirection: 'column', minHeight: '10vh' }}>
@@ -100,7 +105,6 @@ const MessagePage = () => {
                                     '& .MuiOutlinedInput-root': {
                                         padding: '0 rem',
                                         color:'black',
-
                                     },
                                 }}
                             />
@@ -113,7 +117,6 @@ const MessagePage = () => {
                                     <Box component="li" key={user._id} sx={{ marginBottom: '1.25rem' }}>
                                         <Button
                                             onClick={() => handleUserClick(user._id)}
-                                            
                                             sx={{
                                                 textAlign: 'center',
                                                 padding: '1.0rem',
@@ -132,7 +135,6 @@ const MessagePage = () => {
                                                     borderColor: 'white',
                                                     color: 'white',
                                                 }
-                                                
                                             }}
                                         >
                                             {user.profileImage && (
@@ -173,7 +175,6 @@ const MessagePage = () => {
                                         fontFamily: theme.typography.retro,
                                         fontSize: 15,  
                                         color: "#D3D3D3",
-                                    
                                     }}
                                 >
                                     <ChatWindow userId={userId} />

@@ -1,11 +1,11 @@
+/* eslint-disable react/prop-types */
 import { useState, useEffect, useCallback, useRef } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getUserWithMessagesAndConversations, sendMessage } from "../../services/message";
 import { TextField } from "@mui/material";
 import theme from '../../assets/theme';
 
-const ChatWindow = () => {
-    const { userId } = useParams();
+const ChatWindow = ({ userId }) => {
     const [message, setMessage] = useState("");
     const [userData, setUserData] = useState(null);
     const [currentConversation, setCurrentConversation] = useState(null);
@@ -69,7 +69,7 @@ const ChatWindow = () => {
         : null;
 
     return (
-        <div style={{ padding: "1rem" }}>
+        <div data-testid="chat-window" style={{ padding: "1rem" }}>
             <h1 style={{ fontSize: "1.5rem", fontWeight: "bold", marginBottom: "1rem" }}>
                 Chat with {otherUser ? otherUser.name : "User"}
             </h1>
