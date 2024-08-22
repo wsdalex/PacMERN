@@ -7,6 +7,7 @@ import theme from "../../assets/theme";
 import { useEffect, useState } from "react";
 import { getProfile } from "../../services/profile";
 import moment from "moment";
+import controllerIcon from "../../assets/images/controller-icon.png"
 
 
 
@@ -215,7 +216,7 @@ export const ProfilePage = () => {
                                     >
                                         <Box
                                             component='img'
-                                            src='../../public/images/controller-icon.png'
+                                            src={controllerIcon}
                                             alt='Controller Icon'
                                             sx={{
                                                 height: "28px", // Set a fixed height for the icon
