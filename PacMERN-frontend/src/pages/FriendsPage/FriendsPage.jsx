@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { Typography, Container } from "@mui/material";
+import { Typography, Container, Box } from "@mui/material";
 import GlobalNavBar from "../../components/GlobalNavBar";
 import Footer from "../../components/footer";
 import UserCard from "../../components/UserCard";
 import { getAllUsers } from "../../services/user";
+import theme from "../../assets/theme";
 import { getFriends, getFriendRequests, acceptFriendRequest, declineFriendRequest, sendFriendRequest, getFriendRequestsSent } from "../../services/friends";
 
 export const FriendsPage = () => {
@@ -16,7 +17,6 @@ export const FriendsPage = () => {
 
     const userId = JSON.parse(localStorage.getItem('user'))?.id;
 
-    // Fetch data from API
     const fetchData = async () => {
         setIsLoading(true);
         try {
@@ -27,13 +27,11 @@ export const FriendsPage = () => {
                 getFriendRequestsSent(userId)
             ]);
 
-            // Update state with fetched data
             setAllUsers(users);
             setFriends(fetchedFriends.friends);
             setFriendRequests(fetchedRequests.friendRequestsReceived);
             setRequestsSent(fetchedRequestsSent.friendRequestsSent);
 
-            // Filter out friends and requests sent from all users
             const filtered = users.filter(user =>
                 !fetchedFriends.friends.some(friend => friend._id === user._id) &&
                 !fetchedRequestsSent.friendRequestsSent.some(request => request._id === user._id) &&
@@ -51,32 +49,27 @@ export const FriendsPage = () => {
         fetchData();
     }, [userId]);
 
-    // Handle accepting a friend request
     const onAccept = async (currentUserId, friendId) => {
         try {
             await acceptFriendRequest(currentUserId, friendId);
-            await fetchData(); // Re-fetch data to update the state
+            await fetchData(); 
         } catch (error) {
             console.error("Failed to accept friend request", error);
         }
     };
 
-    // Handle rejecting a friend request
     const onReject = async (currentUserId, friendId) => {
         try {
             await declineFriendRequest(currentUserId, friendId);
-            await fetchData(); // Re-fetch data to update the state
+            await fetchData(); 
         } catch (error) {
             console.error("Failed to decline friend request", error);
         }
     };
 
-    // Handle sending a friend request
     const onSendFriendRequest = async (currentUserId, targetUserId) => {
         try {
             await sendFriendRequest(currentUserId, targetUserId);
-            
-            // Re-fetch data to update requestsSent and filteredUsers
             await fetchData();
         } catch (error) {
             console.error("Failed to send friend request", error);
@@ -86,51 +79,178 @@ export const FriendsPage = () => {
     return (
         <>
             <GlobalNavBar />
-            <Container maxWidth="md" sx={{ mt: 8, mb: 8 }}>
+            <Container 
+                maxWidth="md" 
+                sx={{ 
+                    mt: 8, 
+                    mb: 8,  
+                    display: "flex", 
+                    flexDirection: "row", 
+                    justifyContent: "center", 
+                    gap: 4,
+                    width: '100%', 
+                    padding: 1,
+                }}
+            >
                 {isLoading ? (
                     <Typography>Loading...</Typography>
                 ) : (
                     <>
-                        <Typography variant="h4" gutterBottom>Friends</Typography>
-                        {friends.map((person) => (
-                            <UserCard key={person._id} user={person} />
-                        ))}
-                        <Typography variant="h4" gutterBottom>Friend Requests</Typography>
-                        {friendRequests.map((person) => (
-                            <UserCard
-                                key={person._id}
-                                user={person}
-                                isFriendRequest={true}
-                                onAccept={onAccept}
-                                onReject={onReject}
-                                currentUserId={userId}
-                            />
-                        ))}
-                        <Typography variant="h4" gutterBottom>Pending Friends</Typography>
-                        {requestsSent.length ? (
-                            requestsSent.map((person) => (
-                                <UserCard
-                                    key={person._id}
-                                    user={allUsers.find(user => user._id === person._id) || { _id: person._id, name: 'Loading...', imageUrl: '' }}
-                                    currentUserId={userId}
-                                />
-                            ))
-                        ) : (
-                            <Typography>No pending friend requests.</Typography>
-                        )}
-                        <Typography variant="h4" gutterBottom>All Users</Typography>
-                        {filteredUsers.length ? (
-                            filteredUsers.map((person) => (
+                        <Box 
+                            sx={{ 
+                                border: '3px solid black', 
+                                p: 2, 
+                                mb: 4, 
+                                minWidth: '15vw', 
+                                backgroundColor: "#000099",
+                                display: "flex", // Use Flexbox for alignment
+                                flexDirection: "column",
+                                alignItems: "flex", // Center contents
+                            }}
+                        >
+                            <Typography 
+                                variant="h4" 
+                                sx={{
+                                    backgroundColor: 'white',  
+                                    color: 'black',           
+                                    padding: '2px',
+                                    border: '3px solid black', 
+                                    fontSize: 25,
+                                    fontFamily: `${theme.typography.retro.fontFamily}`,       
+                                    borderRadius: '0px', 
+                                    textAlign: 'center', // Center text
+                                }} 
+                                gutterBottom
+                            >
+                                Your Friends:
+                            </Typography>
+                            {friends.map((person) => (
+                                <UserCard key={person._id} user={person} />
+                            ))}
+                        </Box>
+
+                        <Box 
+                            sx={{ 
+                                border: '3px solid black', 
+                                p: 2, 
+                                mb: 4, 
+                                minWidth: '15vw', 
+                                backgroundColor: "#FFC001",
+                                display: "flex", // Use Flexbox for alignment
+                                flexDirection: "column",
+                                alignItems: "center", // Center contents
+                            }}
+                        >
+                            <Typography 
+                                variant="h4" 
+                                sx={{
+                                    backgroundColor: 'white',  
+                                    color: 'black',           
+                                    padding: '2px',
+                                    border: '3px solid black',
+                                    fontSize: 25,
+                                    fontFamily: `${theme.typography.retro.fontFamily}`, 
+                                    borderRadius: '0px', 
+                                    textAlign: 'center', // Center text
+                                }} 
+                                gutterBottom
+                            >
+                                Friend Requests:
+                            </Typography>
+                            {friendRequests.map((person) => (
                                 <UserCard
                                     key={person._id}
                                     user={person}
-                                    onSendFriendRequest={onSendFriendRequest}
+                                    isFriendRequest={true}
+                                    onAccept={onAccept}
+                                    onReject={onReject}
                                     currentUserId={userId}
                                 />
-                            ))
-                        ) : (
-                            <Typography>No users to display.</Typography>
-                        )}
+                            ))}
+                        </Box>
+
+                        <Box 
+                            sx={{ 
+                                border: '3px solid black', 
+                                p: 2, 
+                                mb: 4, 
+                                minWidth: '15vw', 
+                                backgroundColor: "#069330",
+                                display: "flex", // Use Flexbox for alignment
+                                flexDirection: "column",
+                                alignItems: "center", // Center contents
+                            }}
+                        >
+                            <Typography 
+                                variant="h4"
+                                sx={{
+                                    backgroundColor: 'white',  
+                                    color: 'black',           
+                                    padding: '2px',
+                                    border: '3px solid black', 
+                                    fontSize: 25,
+                                    fontFamily: `${theme.typography.retro.fontFamily}`, 
+                                    borderRadius: '0px', 
+                                    textAlign: 'center', // Center text
+                                }} 
+                                gutterBottom
+                            >
+                                Pending Friends:
+                            </Typography>
+                            {requestsSent.length ? (
+                                requestsSent.map((person) => (
+                                    <UserCard
+                                        key={person._id}
+                                        user={allUsers.find(user => user._id === person._id) || { _id: person._id, name: 'Loading...', imageUrl: '' }}
+                                        currentUserId={userId}
+                                    />
+                                ))
+                            ) : (
+                                <Typography>No pending friend requests.</Typography>
+                            )}
+                        </Box>
+
+                        <Box 
+                            sx={{ 
+                                border: '3px solid black', 
+                                p: 2, 
+                                mb: 4, 
+                                minWidth: '15vw', 
+                                backgroundColor: "#ff2d1e",
+                                display: "flex", // Use Flexbox for alignment
+                                flexDirection: "column",
+                                alignItems: "center", // Center contents
+                            }}
+                        >
+                            <Typography 
+                                variant="h4" 
+                                sx={{
+                                    backgroundColor: 'white',  
+                                    color: 'black',           
+                                    padding: '2px',
+                                    border: '3px solid black', 
+                                    fontSize: 25,
+                                    fontFamily: `${theme.typography.retro.fontFamily}`, 
+                                    borderRadius: '0px', 
+                                    textAlign: 'center', // Center text
+                                }} 
+                                gutterBottom
+                            >
+                                All Users:
+                            </Typography>
+                            {filteredUsers.length ? (
+                                filteredUsers.map((person) => (
+                                    <UserCard
+                                        key={person._id}
+                                        user={person}
+                                        onSendFriendRequest={onSendFriendRequest}
+                                        currentUserId={userId}
+                                    />
+                                ))
+                            ) : (
+                                <Typography>No users to display.</Typography>
+                            )}
+                        </Box>
                     </>
                 )}
             </Container>
