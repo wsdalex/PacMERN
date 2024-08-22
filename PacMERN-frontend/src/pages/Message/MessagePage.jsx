@@ -229,8 +229,9 @@ const MessagePage = () => {
                                         border: "3px solid black",
                                         borderRadius: "0px",
                                         fontFamily: theme.typography.retro,
-                                        fontSize: 15,
-                                        color: "#D3D3D3",
+                                        fontSize: 15,  
+                                        color: "#6E6E6E",
+                                    
                                     }}
                                 >
                                     <ChatWindow userId={userId} />
