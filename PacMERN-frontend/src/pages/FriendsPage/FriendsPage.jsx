@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Typography, Container } from "@mui/material";
 import GlobalNavBar from "../../components/GlobalNavBar";
-import Footer from "../../components/Footer";
+import Footer from "../../components/footer";
 import UserCard from "../../components/UserCard";
 import { getAllUsers } from "../../services/user";
 import { getFriends, getFriendRequests, acceptFriendRequest, declineFriendRequest, sendFriendRequest, getFriendRequestsSent } from "../../services/friends";
