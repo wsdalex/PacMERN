@@ -1,38 +1,81 @@
 .message-container {
     display: flex;
-    height: 100vh;
+    flex-direction: column;
+    min-height: 10vh;
 }
 
 .conversation-list {
-    width: 300px;
-    border-right: 1px solid #e0e0e0;
+    width: 100%;
+    max-width: 600px;
+    margin: 0;
 }
 
 .conversation-header {
-    padding: 16px;
-}
-
-.message-area {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
+    font-family: 'retro', sans-serif; /* Assuming 'retro' is the correct font name */
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0;
+    min-height: 5vh;
+    text-align: center;
+    color: black;
 }
 
 .message-list {
-    flex-grow: 1;
-    overflow: auto;
-    padding: 16px;
+    list-style: none;
+    padding: 0;
 }
 
 .message-item {
+    margin-bottom: 1.25rem;
+    text-align: center;
+    padding: 1.0rem;
+    background: #FFC001; /* Assuming this is your yellow color */
+    border: 3px solid black;
+    border-radius: 30px;
+    cursor: pointer;
     display: flex;
-    margin-bottom: 8px;
+    align-items: center;
+    color: black;
+    width: 30%;
+    font-family: 'retro', sans-serif;
+    text-transform: none;
 }
 
-.message-item.current-user {
-    justify-content: flex-end;
+.message-item:hover {
+    background: #000099;
+    border-color: white;
+    color: white;
 }
 
+.user-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.message-input {
+    margin-bottom: 5rem;
+}
+
+.message-area {
+    width: 400px;
+    background-color: white;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    border: 3px solid black;
+    border-radius: 0;
+    font-family: 'retro', sans-serif;
+    font-size: 15px;
+    color: #D3D3D3;
+}
+
+.close-button {
+    color: black;
+    font-family: 'retro', sans-serif;
+}
+
+/* You might want to keep these styles for the ChatWindow component */
 .message-bubble {
     padding: 8px 16px;
     border-radius: 16px;
@@ -46,22 +89,4 @@
 
 .message-bubble.other-user {
     background-color: #e0e0e0;
-}
-
-.message-input-area {
-    padding: 16px;
-    display: flex;
-}
-
-.message-input {
-    flex-grow: 1;
-    margin-right: 8px;
-}
-
-.placeholder-message {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    color: #757575;
 }
