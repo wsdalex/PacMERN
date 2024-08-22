@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { getProfile } from "../../services/profile";
 import moment from "moment";
 
+
 export const ProfilePage = () => {
     const [profile, setProfile] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -76,6 +77,9 @@ export const ProfilePage = () => {
             </Typography>
         );
     if (!profile) return <Typography variant='h6'>No profile found</Typography>;
+
+    const sortedRecentlyPlayed = [...profile.recentlyPlayed].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    const latestFivePlayed = sortedRecentlyPlayed.slice(0, 5);
 
     return (
         <div>
@@ -196,8 +200,8 @@ export const ProfilePage = () => {
                             >
                                 Recently played:
                             </Typography>
-                            {profile.recentlyPlayed.length > 0 ? (
-                                profile.recentlyPlayed.map((item, index) => (
+                            {latestFivePlayed.length > 0 ? (
+                                latestFivePlayed.map((item, index) => (
                                     <Typography
                                         key={index}
                                         variant='body1'
@@ -210,7 +214,7 @@ export const ProfilePage = () => {
                                     >
                                         <Box
                                             component='img'
-                                            src='../src/assets/images/controller-icon.png'
+                                            src='../../src/assets/images/controller-icon.png'
                                             alt='Controller Icon'
                                             sx={{
                                                 height: "28px", // Set a fixed height for the icon
@@ -241,3 +245,4 @@ export const ProfilePage = () => {
         </div>
     );
 };
+
