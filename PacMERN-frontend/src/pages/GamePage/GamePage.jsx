@@ -8,7 +8,7 @@ import { getToken } from "../../services/authentication";
 
 const user = localStorage.getItem("user");
 
-let user_name = ""; // Added check to ensure 'user' is not 'null', as throws error
+let user_name = "Player"; // Added check to ensure 'user' is not 'null', as throws error
 
     if (user) {
         try {
