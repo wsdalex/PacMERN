@@ -15,7 +15,7 @@ export const ProfilePage = () => {
     const navigate = useNavigate();
     const user = JSON.parse(localStorage.getItem("user"));
     const userId = user?.id;
-    const defaultProfileImage = "../src/assets/images/defaultProfileImage.svg.png";
+    const defaultProfileImage = "../src/assets/defaultProfileImage.svg.png";
 
     useEffect(() => {
         const fetchProfile = async () => {
