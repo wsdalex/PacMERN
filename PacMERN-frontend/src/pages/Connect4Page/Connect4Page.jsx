@@ -4,6 +4,7 @@ import { Box, Button, TextField, Typography, Container } from "@mui/material";
 import "./Connect4Page.css";
 import GlobalNavBar from "../../components/GlobalNavBar";
 import Footer from "../../components/footer";
+import theme from "../../assets/theme";
 
 const PlayerNameForm = ({ onSubmit }) => {
     const [player1Name, setPlayer1Name] = useState("");
@@ -17,10 +18,19 @@ const PlayerNameForm = ({ onSubmit }) => {
     };
 
     return (
-        <Container maxWidth='sm'>
+        <Container maxWidth='sm'
+        sx={{
+            fontFamily: theme.typography.retro.fontFamily
+        }}>
             <GlobalNavBar />
-            <Box my={4}>
-                <Typography variant='h4' component='h1' gutterBottom>
+            <Box my={4}
+            sx={{
+                fontFamily: theme.typography.retro.fontFamily
+            }}>
+                <Typography 
+                sx={{
+                    fontFamily: theme.typography.retro.fontFamily
+                }}variant='h4' component='h1' gutterBottom>
                     Enter Player Names
                 </Typography>
                 <form onSubmit={handleSubmit}>
@@ -31,8 +41,14 @@ const PlayerNameForm = ({ onSubmit }) => {
                         value={player1Name}
                         onChange={(e) => setPlayer1Name(e.target.value)}
                         required
+                        sx={{
+                            fontFamily: theme.typography.retro.fontFamily
+                        }}
                     />
                     <TextField
+                    sx={{
+                        fontFamily: theme.typography.retro.fontFamily
+                    }}
                         fullWidth
                         margin='normal'
                         label='Player 2 Name'
@@ -239,8 +255,11 @@ const Connect4 = () => {
                     )}
                 </div>
             </div>
-            <div id='text'>
-                <h1>CONNECT 4</h1>
+            <div id='text' >
+                <h1
+                sx={{
+                    fontFamily: theme.typography.retro.fontFamily
+                }}>CONNECT 4</h1>
                 <div id='result'>{result}</div>
                 {canPlay && (
                     <p id='playersturn'>
