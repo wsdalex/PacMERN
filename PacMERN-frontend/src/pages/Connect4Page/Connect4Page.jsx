@@ -4,7 +4,6 @@ import { Box, Button, TextField, Typography, Container } from "@mui/material";
 import "./Connect4Page.css";
 import GlobalNavBar from "../../components/GlobalNavBar";
 import Footer from "../../components/footer";
-import theme from "../../assets/theme";
 
 const PlayerNameForm = ({ onSubmit }) => {
     const [player1Name, setPlayer1Name] = useState("");
@@ -18,19 +17,10 @@ const PlayerNameForm = ({ onSubmit }) => {
     };
 
     return (
-        <Container maxWidth='sm'
-        sx={{
-            fontFamily: theme.typography.retro.fontFamily
-        }}>
+        <Container maxWidth='sm'>
             <GlobalNavBar />
-            <Box my={4}
-            sx={{
-                fontFamily: theme.typography.retro.fontFamily
-            }}>
-                <Typography 
-                sx={{
-                    fontFamily: theme.typography.retro.fontFamily
-                }}variant='h4' component='h1' gutterBottom>
+            <Box my={4}>
+                <Typography variant='h4' component='h1' gutterBottom>
                     Enter Player Names
                 </Typography>
                 <form onSubmit={handleSubmit}>
@@ -41,14 +31,8 @@ const PlayerNameForm = ({ onSubmit }) => {
                         value={player1Name}
                         onChange={(e) => setPlayer1Name(e.target.value)}
                         required
-                        sx={{
-                            fontFamily: theme.typography.retro.fontFamily
-                        }}
                     />
                     <TextField
-                    sx={{
-                        fontFamily: theme.typography.retro.fontFamily
-                    }}
                         fullWidth
                         margin='normal'
                         label='Player 2 Name'
@@ -84,7 +68,6 @@ const Connect4 = () => {
     const [canPlay, setCanPlay] = useState(true);
     const [players, setPlayers] = useState(null);
     const [fallingPiece, setFallingPiece] = useState(null);
-
 
     const winArray = [
         [0, 1, 2, 3],
@@ -177,17 +160,17 @@ const Connect4 = () => {
             if (lastIndex !== undefined) {
                 const newCells = [...cells];
                 newCells[lastIndex] = currentPlayer;
-                
+
                 // Calculate the number of rows the piece needs to fall
                 const rowsToFall = Math.floor(lastIndex / width);
-                
+
                 // Set the falling piece
                 setFallingPiece({
                     player: currentPlayer,
                     column: lastIndex % width,
-                    fallHeight: rowsToFall * 100
+                    fallHeight: rowsToFall * 100,
                 });
-                
+
                 // Remove the falling piece after animation completes
                 setTimeout(() => {
                     setFallingPiece(null);
@@ -231,7 +214,7 @@ const Connect4 = () => {
     return (
         <div className='connect4-game'>
             <GlobalNavBar />
-                        <div className='grid-wrapper'>
+            <div className='grid-wrapper'>
                 <div id='grid'>
                     {cells.map((cell, index) => (
                         <div
@@ -245,21 +228,20 @@ const Connect4 = () => {
                         />
                     ))}
                     {fallingPiece && (
-                        <div 
-                            className={`falling-piece ${players[fallingPiece.player].className}`}
+                        <div
+                            className={`falling-piece ${
+                                players[fallingPiece.player].className
+                            }`}
                             style={{
                                 left: `${fallingPiece.column * 100}px`,
-                                '--fall-height': `${fallingPiece.fallHeight}px`
+                                "--fall-height": `${fallingPiece.fallHeight}px`,
                             }}
                         />
                     )}
                 </div>
             </div>
-            <div id='text' >
-                <h1
-                sx={{
-                    fontFamily: theme.typography.retro.fontFamily
-                }}>CONNECT 4</h1>
+            <div id='text'>
+                <h1>CONNECT 4</h1>
                 <div id='result'>{result}</div>
                 {canPlay && (
                     <p id='playersturn'>
@@ -270,9 +252,29 @@ const Connect4 = () => {
                     </p>
                 )}
                 <p id='endofgame'>{endOfGame}</p>
-                <button onClick={restartGame}>Restart</button>
+                <Button
+                    onClick={restartGame}
+                    sx={{
+                        fontFamily: '"Press Start 2P", cursive',
+                        fontSize: "1.3em",
+                        color: "#f9f6f6",
+                        border: "7px solid black",
+                        backgroundColor: "#ff0202",
+                        borderRadius: "50px",
+                        padding: "20px",
+                        "&:hover": {
+                            backgroundColor: "#ff0202",
+                        },
+                        "&.MuiButton-root": {
+                            // This increases specificity
+                            textTransform: "none", // Material-UI buttons are uppercase by default
+                        },
+                    }}
+                >
+                    Restart
+                </Button>
             </div>
-            <Footer/>
+            <Footer />
         </div>
     );
 };

@@ -20,20 +20,74 @@ async function seed() {
                 name: "Alice",
                 email: "a@a.com",
                 password: "p",
-                profileImage: "https://example.com/alice.jpg",
+                profileImage: "https://www.ocregister.com/wp-content/uploads/migration/m37/m37zui-b78946761z.120120428194535000g3j17bhpl.2.jpg?w=535",
             },
             {
                 name: "Bob",
                 email: "b@b.com",
                 password: "p",
-                profileImage: "https://example.com/bob.jpg",
+                profileImage: "https://www.azcentral.com/gcdn/presto/2020/06/12/PPHX/e7207da9-6fbe-467b-b63e-ac44e95db582-BobsBurgers_2019_KeyPoses_Bob_1.jpg?crop=3356,1888,x0,y480&width=660&height=372&format=pjpg&auto=webp",
             },
             {
                 name: "Charlie",
                 email: "c@c.com",
                 password: "p",
-                profileImage: "https://example.com/charlie.jpg",
+                profileImage: "https://m.media-amazon.com/images/M/MV5BNWQ2Yzg1MDgtZWVhMC00YjI1LThhNTEtOWE2NWRiZWM5Mjg0XkEyXkFqcGdeQXVyNTI5NjIyMw@@._V1_.jpg",
             },
+            {
+                name: "Diana Prince",
+                email: "diana@amazon.com",
+                password: "p",
+                profileImage: "",
+            },
+            {
+                name: "Ethan Hunt",
+                email: "ethan@impossible.com",
+                password: "p",
+                profileImage: "",
+            },
+            {
+                name: "Fiona Shrek",
+                email: "fiona@farfaraway.com",
+                password: "p",
+                profileImage: "",
+            },
+            {
+                name: "Gandalf Grey",
+                email: "gandalf@middleearth.com",
+                password: "p",
+                profileImage: "",
+            },
+            {
+                name: "Hermione Granger",
+                email: "hermione@hogwarts.edu",
+                password: "p",
+                profileImage: "",
+            },
+            {
+                name: "Indiana Jones",
+                email: "indy@archaeology.edu",
+                password: "p",
+                profileImage: "",
+            },
+            {
+                name: "Jane Austen",
+                email: "jane@prideandprejudice.com",
+                password: "p",
+                profileImage: "",
+            },
+            {
+                name: "King Arthur",
+                email: "arthur@camelot.gov",
+                password: "p",
+                profileImage: "",
+            },
+            {
+                name: "Lara Croft",
+                email: "lara@tombraider.com",
+                password: "p",
+                profileImage: "",
+            }
         ]);
 
         console.log("Users created:", users);
