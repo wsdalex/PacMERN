@@ -93,7 +93,7 @@ export const ConnectionsGame = () => {
     <>
     <GlobalNavBar/>
     <Box sx={{ padding: 4 }}>
-      <Typography sx={{color: "#000099", fontSize: 50,}}>Group the cards into sets of 4!</Typography>
+      <Typography sx={{color: "black", fontSize: 38, fontFamily: theme.typography.retro.fontFamily}}>Group the cards into sets of 4!</Typography>
       <br />
       {isGameComplete && (
         <Box sx={{
@@ -104,6 +104,7 @@ export const ConnectionsGame = () => {
           borderRadius: 2,
           boxShadow: 3,
           textAlign: 'center',
+          fontFamily: theme.typography.retro.fontFamily
         }}>
           <Typography variant="h4">
             Well Done!
@@ -111,7 +112,9 @@ export const ConnectionsGame = () => {
         </Box>
       )}
 
-      <Grid container spacing={2} justifyContent="center">
+      <Grid 
+      
+      container spacing={2} justifyContent="center">
         {shuffledWords.map((word, index) => {
           const isSolved = solvedGroups.some(group => group.includes(word));
           const isRemoved = removedCards.includes(word);
@@ -131,8 +134,16 @@ export const ConnectionsGame = () => {
                     pointerEvents: isSolved ? 'none' : 'auto',
                   }}
                 >
-                  <CardContent>
-                    <Typography variant="h6" align="center">
+                  <CardContent
+                  sx={{
+                    border: "3px solid black"
+                  }}>
+                    <Typography 
+                    sx={{
+                      fontFamily: theme.typography.retro.fontFamily,
+                      
+                    }}
+                    variant="h6" align="center">
                       {word}
                     </Typography>
                   </CardContent>
