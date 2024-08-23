@@ -93,6 +93,8 @@ export const ConnectionsGame = () => {
     <>
     <GlobalNavBar/>
     <Box sx={{ padding: 4 }}>
+      <Typography sx={{color: "#000099", fontSize: 50,}}>Group the cards into sets of 4!</Typography>
+      <br />
       {isGameComplete && (
         <Box sx={{
           marginBottom: 4,
