@@ -64,21 +64,17 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function GlobalNavBar() {
     const [anchorEl, setAnchorEl] = React.useState(null);
-
-    const isMenuOpen = Boolean(anchorEl);
     const [anchorMenuIconEl, setAnchorMenuIconEl] = React.useState(null);
-    const isMenuIconOpen = Boolean(anchorMenuIconEl);
-
-const handleMenuIconClick = (event) => {
-    setAnchorMenuIconEl(event.currentTarget);
-};
-
-const handleMenuIconClose = () => {
-    setAnchorMenuIconEl(null);
-};
-
 
     const navigate = useNavigate();
+
+    const handleMenuIconClick = (event) => {
+        setAnchorMenuIconEl(event.currentTarget);
+    };
+
+    const handleMenuIconClose = () => {
+        setAnchorMenuIconEl(null);
+    };
 
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
@@ -108,227 +104,185 @@ const handleMenuIconClose = () => {
         setAnchorEl(null);
     };
 
-    const handleMobileMenuClose = () => {
-        setMobileMoreAnchorEl(null);
-    };
-
-    const handleMobileMenuOpen = (event) => {
-        setMobileMoreAnchorEl(event.currentTarget);
-    };
-
-    const menuId = 'primary-search-account-menu';
-    const renderMenu = (
-        <Menu
-            anchorEl={anchorEl}
-            anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
-            id={menuId}
-            keepMounted
-            transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
-            open={isMenuOpen}
-            onClose={handleMenuClose}
-            sx={{
-                '& .MuiPaper-root': {
-                    backgroundColor: 'white',
-                    color: '#000099',
-                    border: "3px solid black",
-                    boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)', // Optional: add a shadow for better visibility
-                },
-            }}
-        >
-            <MenuItem onClick={handleProfileSubmit}>Profile</MenuItem>
-            <MenuItem onClick={handleLogout}>Log Out</MenuItem>
-        </Menu>
-    );
-
-    const renderMenuIconDropdown = (
-        <Menu
-            anchorEl={anchorMenuIconEl}
-            anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-            }}
-            id="menu-icon-dropdown"
-            keepMounted
-            transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-            }}
-            open={isMenuIconOpen}
-            onClose={handleMenuIconClose}
-            sx={{
-                '& .MuiPaper-root': {
-                    backgroundColor: 'white',
-                    color: '#000099',
-                    border: "3px solid black",
-                    boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
-                },
-            }}
-        >
-            <MenuItem onClick={() => { handleGamePageSubmit(); handleMenuIconClose(); }}>Games</MenuItem>
-            <MenuItem onClick={handleMenuIconClose}>Messages</MenuItem>
-            <MenuItem onClick={handleMenuIconClose}>Friends</MenuItem>
-            <MenuItem onClick={() => { handleProfileSubmit(); handleMenuIconClose(); }}>Profile</MenuItem>
-        </Menu>
-    );
-
-    const mobileMenuId = 'primary-search-account-menu-mobile';
-    const renderMobileMenu = (
-        <Menu>
-            <MenuItem>
-                <IconButton size="large" aria-label="show 4 new mails" color="#000099">
-                    <Badge badgeContent={4} color="error">
-                        <MailIcon />
-                    </Badge>
-                </IconButton>
-                <p>Messages</p>
-            </MenuItem>
-            <MenuItem>
-                <IconButton
-                    size="large"
-                    aria-label="show 17 new notifications"
-                    color="inherit"
-                >
-                    <Badge badgeContent={17} color="error">
-                        <NotificationsIcon />
-                    </Badge>
-                </IconButton>
-                <p>Notifications</p>
-            </MenuItem>
-            <MenuItem onClick={handleProfileMenuOpen}>
-                <IconButton
-                    size="large"
-                    aria-label="account of current user"
-                    aria-controls="primary-search-account-menu"
-                    aria-haspopup="true"
-                    color="inherit"
-                >
-                    <AccountCircle />
-                </IconButton>
-                <p>Profile</p>
-            </MenuItem>
-        </Menu>
-    );
-
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar
                 position="absolute"
                 sx={{
                     width: '100%',
-                    height: 60,
+                    height: 'auto',
                     padding: '0 10px',
                     backgroundColor: 'white',
                     boxShadow: 'none',
                     borderBottom: '3px solid black',
-                    boxSizing: 'border-box',
                 }}
             >
-                <Toolbar>
-                <IconButton
-                    size="large"
-                    edge="start"
-                    color="inherit"
-                    aria-label="open drawer"
-                    sx={{ mr: 2, mb: 1}}
-                    onClick={handleMenuIconClick}
-                    >
-                <img
-                src={M64} // Replace with the URL or path to your image
-                alt="M64"
-                style={{ width: 60, height: 60 }} // Adjust the size as needed
-                />
-                </IconButton>
-                {renderMenuIconDropdown}
-
+                <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'nowrap' }}>
+                <Box
+                sx={{
+                mr: 1,
+                 '& img': {
+                 width: 'clamp(30px, 5vw, 60px)',
+                 height: 'auto',
+                },
+                }}
+                aria-label="Go to homepage"
+            >
+            <Link
+             to="/"
+            style={{
+            display: 'inline-block', // Ensures the link wraps the image properly
+            textDecoration: 'none', // Removes any default link styling
+        }}
+    >
+        <img 
+            src={M64} 
+            alt="M64 logo image" 
+            style={{ display: 'block' }} // Ensures the image takes up its full space
+        />
+    </Link>
+</Box>
 
                     <Typography
                         variant="h6"
                         noWrap
                         component="div"
                         color="#000099"
-                        fontSize="55px"
-                        sx={{ display: { xs: 'none', sm: "block" } }}
+                        sx={{
+                            fontSize: 'clamp(1rem, 3vw, 3rem)',
+                            display: { xs: 'none', sm: 'block' },
+                        }}
                     >
-                        MAKERS<span style={{ fontSize: 30, color: '#ff2d1e', verticalAlign: 'super' }}>64</span>
+                        MAKERS<span style={{ fontSize: '0.6em', color: '#E60000', verticalAlign: 'super' }}>64</span>
                     </Typography>
-                    <Search>
+
+                    <Search sx={{ flexGrow: 1, maxWidth: '300px' }}>
                         <SearchIconWrapper>
-                            <SearchIcon />
+                            <SearchIcon aria-hidden="true" />
                         </SearchIconWrapper>
                         <StyledInputBase
-                            placeholder=""
-                            inputProps={{ 'aria-label': 'search' }}
+                            inputProps={{
+                                'aria-label': 'Search input box',
+                                'aria-describedby': 'search-description',
+                            }}
                         />
                     </Search>
-
-                    <Box sx={{ flexGrow: 1 }} />
-                    <Box sx={{ display: { xs: 'none', md: 'flex', color: "#069330" } }}>
-                        
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            gap: '8px',
+                            justifyContent: 'space-around',
+                            width: '100%',
+                            maxWidth: '300px',
+                            mt: { xs: 1, md: 0 },
+                        }}
+                    >
                         <IconButton
                             size="large"
-                            edge="end"
-                            aria-label="game page"
-                            aria-haspopup="true"
+                            aria-label="Go to games page"
                             onClick={handleGamePageSubmit}
-                            sx={{ border: "2px solid black", color: 'white', backgroundColor: "#000099", ml: 1 , width: 41, height: 41, borderRadius: '50%', marginRight: '16px'}} 
+                            sx={{
+                                border: '2px solid black',
+                                backgroundColor: '#000099',
+                                width: 'clamp(30px, 5vw, 41px)',
+                                height: 'clamp(30px, 5vw, 41px)',
+                                borderRadius: '50%',
+                                '&:focus': {
+                                    outline: '3px solid #FFC001',
+                                },
+                            }}
                         >
-                            <SportsEsportsIcon />
+                            <SportsEsportsIcon aria-hidden="true" />
                         </IconButton>
 
-                        <Link to="/messages">
                             <IconButton
                                 size="large"
-                                aria-label="show 4 new mails"
-                                sx={{ border: "2px solid black", color: 'white', backgroundColor: "#FFC001", mr: 1 , width: 41, height: 41, borderRadius: '50%'}} 
+                                aria-label="View messages"
+                                sx={{
+                                    border: '2px solid black',
+                                    backgroundColor: '#FFC001',
+                                    width: 'clamp(30px, 5vw, 41px)',
+                                    height: 'clamp(30px, 5vw, 41px)',
+                                    borderRadius: '50%',
+                                    '&:focus': {
+                                        outline: '3px solid #FFC001',
+                                    },
+                                }}
                             >
-                                <Badge  color="error">
-                                    <MailIcon />
+                                <Badge color="error">
+                                    <MailIcon aria-hidden="true" />
                                 </Badge>
                             </IconButton>
-                        </Link>
 
                         <IconButton
                             size="large"
-                            aria-label="friends"
+                            aria-label="Go to friends page"
                             onClick={handleFriendsPageSubmit}
-                            sx={{ border: "2px solid black", color: 'white', backgroundColor: "#069330", mx: 1 , width: 41, height: 41, borderRadius: '50%'}} 
+                            sx={{
+                                border: '2px solid black',
+                                backgroundColor: '#069330',
+                                width: 'clamp(30px, 5vw, 41px)',
+                                height: 'clamp(30px, 5vw, 41px)',
+                                borderRadius: '50%',
+                                '&:focus': {
+                                    outline: '3px solid #FFC001',
+                                },
+                            }}
                         >
-                            <PeopleIcon />
+                            <PeopleIcon aria-hidden="true" />
                         </IconButton>
 
                         <IconButton
                             size="large"
-                            edge="end"
-                            aria-label="account of current user"
-                            aria-haspopup="true"
+                            aria-label="Open profile menu"
                             onClick={handleProfileMenuOpen}
-                            sx={{ border: "2px solid black", color: 'white', backgroundColor: "#ff2d1e", ml: 1 , width: 41, height: 41, borderRadius: '50%'}} 
+                            sx={{
+                                border: '2px solid black',
+                                backgroundColor: '#E60000',
+                                width: 'clamp(30px, 5vw, 41px)',
+                                height: 'clamp(30px, 5vw, 41px)',
+                                borderRadius: '50%',
+                                '&:focus': {
+                                    outline: '3px solid #FFC001',
+                                },
+                            }}
                         >
-                            <AccountCircle />
+                            <AccountCircle aria-hidden="true" />
                         </IconButton>
-                    </Box>
-                    <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+
                         <IconButton
                             size="large"
-                            aria-label="show more"
-                            aria-controls={mobileMenuId}
-                            aria-haspopup="true"
-                            onClick={handleMobileMenuOpen}
-                            color="inherit"
+                            aria-label="log out"
+                            onClick={handleLogout}
+                            sx={{
+                                color: '#000099',
+                                backgroundColor: "white", 
+                                ml: 1,
+                                width: 'clamp(30px, 5vw, 41px)',
+                                height: 'clamp(30px, 5vw, 41px)',
+                                marginRight: '8px',
+                                '&:focus': {
+                                    outline: '3px solid #FFC001',
+                                    outlineOffset: '2px',
+                                },
+                            }}
                         >
-                            <MoreIcon />
+                            <Typography
+                                sx={{
+                                    fontSize: 'clamp(12px, 2vw, 16px)', 
+                                    fontWeight: 'bold',
+                                    textTransform: 'uppercase',
+                                    textShadow: 'none', 
+                                    outline: 'none',
+                                }}
+                            >
+                                Logout
+                            </Typography>
                         </IconButton>
+
                     </Box>
                 </Toolbar>
             </AppBar>
-            {renderMobileMenu}
-            {renderMenu}
         </Box>
     );
 }

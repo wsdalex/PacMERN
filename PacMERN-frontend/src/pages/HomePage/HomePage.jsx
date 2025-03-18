@@ -7,6 +7,7 @@ import YellowBox from "../../components/YellowBox";
 import GreenBox from "../../components/GreenBox";
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
 // import './Homepage.css'
 
 const CustomButton = styled(Button)(({ theme }) => ({
@@ -29,16 +30,23 @@ export const HomePage = () => {
         <>
             <div className='home'>
                 <GlobalNavBar />
-                {/* <img src={MImage} alt="M logo" style={{ width: '70px', height: 'auto', display: 'block', margin: '0 auto' }} /> */}
                 <FixedContainer>
+                <Typography variant="h1" sx={{ position: 'absolute', left: '-9999px' }}>
+                        Home Page
+                    </Typography>
                     <YellowBox>
-                        <CustomButton component={Link} to='/signup'>
+                        <CustomButton 
+                          component={Link} 
+                          to='/signup'
+                          aria-label="Sign up for an account">
                             SIGN UP
                         </CustomButton>
                     </YellowBox>
                     <br />
                     <GreenBox>
-                        <CustomButton component={Link} to='/login'>
+                        <CustomButton component={Link} 
+                         to='/login'
+                         aria-label="Log in to your account">
                             LOG IN
                         </CustomButton>
                     </GreenBox>

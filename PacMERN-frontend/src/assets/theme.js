@@ -12,7 +12,7 @@ const theme = createTheme({
       main: "#069330", // Green
     },
     red: {
-      main: "#ff2d1e", // Red
+      main: "#E60000", // Red 
     },
     background: {
       default: '#FFFFFF', // White

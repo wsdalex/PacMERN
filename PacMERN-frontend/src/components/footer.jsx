@@ -1,19 +1,20 @@
 // src/components/Footer.js
-
-import { Box, Typography } from '@mui/material';
+import React from 'react';
+import { Box, Typography, useMediaQuery } from '@mui/material';
 import Pacman from '../assets/images/pacman.png';
-
 import theme from '../assets/theme';
 
-
-
 const Footer = () => {
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
+  const names = ['POLLY', 'ABDALLAH', 'KARINA', 'WILL', 'ROBERT', 'JOSH'];
+
   return (
     <Box
       component="footer"
       sx={{
         width: '100%',
-        padding: '1rem',
+        padding: '0.5rem',
         textAlign: 'center',
         position: 'fixed',
         bottom: 0,
@@ -30,38 +31,49 @@ const Footer = () => {
       <Typography 
         variant="body2" 
         sx={{ 
-          mt: 1, 
+          mt: 0.5, 
           color: theme.palette.red.main, 
-          display: 'flex', 
-          alignItems: 'center', 
-          justifyContent: 'center',
-          fontSize: '1rem'
+          fontSize: { xs: '0.8rem', sm: '1rem' }
         }}
       >
         PACMERN PRODUCTIONS 
       </Typography>
-      <Typography 
-        variant="body2" 
+      <Box 
         sx={{ 
-          mt: 1, 
-          color: theme.palette.red.main, 
-          display: 'flex', 
-          alignItems: 'center', 
+          mt: 0.5, 
+          display: 'flex',
+          flexWrap: 'wrap',
           justifyContent: 'center',
-          fontSize: '10px'
+          alignItems: 'center',
+          gap: { xs: '0.5rem', sm: '1rem' }
         }}
       >
-        <img src={Pacman} alt="pacman icon" style={{ width: '15px', height: '15px', marginRight: '5px' }}/>
-        <span style={{ color: 'black' }}>POLLY</span><img src={Pacman} alt="pacman icon" style={{ width: '15px', height: '15px', marginRight: '5px', marginLeft: '50px' }}/>
-        <span style={{ color: 'black' }}>ABDALLAH</span><img src={Pacman} alt="pacman icon" style={{ width: '15px', height: '15px', marginRight: '5px', marginLeft: '50px' }}/>
-        <span style={{ color: 'black' }}>KARINA</span><img src={Pacman} alt="pacman icon" style={{ width: '15px', height: '15px', marginRight: '5px', marginLeft: '50px' }}/>
-        <span style={{ color: 'black' }}>WILL</span><img src={Pacman} alt="pacman icon" style={{ width: '15px', height: '15px', marginRight: '5px', marginLeft: '50px' }}/>
-        <span style={{ color: 'black' }}>ROBERT</span><img src={Pacman} alt="pacman icon" style={{ width: '15px', height: '15px', marginRight: '5px', marginLeft: '50px' }}/>
-        <span style={{ color: 'black' }}>JOSH</span>
-      </Typography>
+        {names.map((name, index) => (
+          <Typography 
+            key={name}
+            variant="body2" 
+            sx={{ 
+              color: 'black', 
+              fontSize: { xs: '8px', sm: '10px' },
+              display: 'flex',
+              alignItems: 'center',
+            }}
+          >
+            <img 
+              src={Pacman} 
+              alt="pacman icon" 
+              style={{ 
+                width: isMobile ? '10px' : '15px', 
+                height: isMobile ? '10px' : '15px', 
+                marginRight: '3px' 
+              }}
+            />
+            {name}
+          </Typography>
+        ))}
+      </Box>
     </Box>
   );
 };
 
 export default Footer;
-
